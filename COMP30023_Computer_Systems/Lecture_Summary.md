@@ -1,4 +1,4 @@
-﻿# COMP30023 Computer Systems Lecture Summary
+# COMP30023 Computer Systems Lecture Summary
 ## Lecture 1
 - **What is Internet?**
 	- Internet is a network that interconnects with hundreds of millions of computing devices
@@ -9,7 +9,7 @@
 - **Protocols: defines the format and order of messages exchanged between different communicating entities, as well as the action taken on the transmission or receipt of a message or other events**
 	- All activities in the internet involves two or more communicating remote entities is governed by protocols
 	-  The communication between different entities requires different protocols
-- **Layers:**
+- **Layering model:**
 	- Each layer offers services to the layer directly above it by:
 		- Performing certain actions within the layer
 		- Using the services by the layer directly below it
@@ -25,7 +25,63 @@
 		- Increase the chance to make errors
 - **Service Models:**
 	- TCP/IP Model: Application Layer - Transport Layer - Network Layer - Link Layer - Physical Layer
-	- OSI Model: Application Layer - Presentation Layer - Session Layer - Transport Layer - Network Layer - Link Layer - Physical Layer
+	- OSI Model(Open Systems Interconnection): Application Layer - Presentation Layer - Session Layer - Transport Layer - Network Layer - Link Layer - Physical Layer
 ## Lecture 2
-
-
+- **Overview of TCP/IP Model**
+	- **Application Layer**
+		- The packets of information at this layer are called *messages*
+		- It includes network applications and their application-layer protocols
+		- Main protocols:
+			- HTTP(HyperText Transfer Protocol): Web
+			- FTP(File Transfer Protocol): File Transfer between end systems
+			- SMTP(Simple Mail Transfer Protocol): email
+			- DNS(Domain Name Systems): network-name to network-address translation
+		- The application in one end system uses the protocol to exchange packets of information with the application in another end system
+	- **Transport Layer**
+		- The packets of information at this layer are called *segment*
+		- It transports application-layer message between application endpoints
+		- Main protocols:
+			- TCP(Transmission Control Protocol):
+				- Connection-Oriented Services
+				- Reliable
+			- UDP(User Datagram Protocol):
+				- Connectionless Services
+				- Unreliable
+	- **Network Layer**
+		- The packets of information at this layer are called *datagram*
+		- It is responsible for moving network-layer packets from one end system to another end system
+		- Main protocols:
+			- IP(Internet Protocol)
+				- It defines the fields in packets
+				- It defines how the end systems and routers act on these fields
+				- All Internet components have Internet layer *must run the IP protocol*
+			-  Routing Protocol
+				- It *determines the routes* the packets take between source and destination
+				- The network layer routes a packet through a series of routers between the source and the destination
+				- To move the packet from one node to the next node in the route, the network layer needs to *pass the datagram down* to the link layer
+	- **Link Layer**
+		- The packets of information at this layer are called *frame*
+		- It delivers the packets to the next nodes along the route
+		- The delivery services depends on specific link-layer protocol that is employed over the link, which means they are *link dependent*
+	- **Physical Layer**
+		- While the job of the link layer is to move the entire frame from one network element to the next element in the route, the job of the physical layer is to move the individual bits within the frames from the network element to the next
+		- The protocols at this layer are also link dependent and further depend on the actual transmission medium of the link
+- The layer Application, Transport, Network are end to end
+- The layer Link, Physical are point to point
+- **Overview of the OSI(Open Systems interconnection) model**
+	- Except for layer 5, 6, all other layers have roughly the same functionalities as TCP/IP model
+	- **Presentation Layer**
+		- To provide services that allow communicating application to *interpret the meaning of the data exchanged*
+		- The service includes data compression, data encryption, data description
+		- It allows the application not to worry about the internal format in which data are represented and stored
+	- **Session Layer**
+		- It provides for delimiting and synchronization of data exchange, including the means to build a checkpointing and recovery scheme
+- **Application Layer in depth**
+	- Sockets
+		- The interface between the application layer and the transport layer
+		- Applications send and receive message through sockets
+	- HTTP
+		- The HTTP needs to be implemented in two programs: client program and server program
+		- The client program and the server program are executing on the different end systems and talk to each other by exchanging HTTP messages
+		- *Web page*: a document consisting of objects
+		- *Object*:
