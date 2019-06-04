@@ -91,3 +91,33 @@
 			![URL Example](Image/URL_example.png)
 		- Web browsers implement the client side of HTTP while the web servers implement the server side of HTTP
 		- Most web pages include a base html file and several referenced objects
+- **Two types of connections**
+	- Non-persistent connection: Each request and response pair is sent over a separate TCP connection
+		- For each objects, it requires **two** "round trip time"(One to *initiates the TCP connection* and one for *HTTP request*) plus the *file transmission time*
+		- For each TCP connection, it causes OS *overhead* because TCP buffers must be allocated and the TCP variables must be kept in both client and server
+		- Browsers often open *parallel* TCP connections to fetch referenced objects  
+	- Persistent connection: All the requests and responses are sent over the same TCP connection
+		- The default option for HTTP
+		- Server leaves connection open after sending response. The connection closes if it is not used for certain amount of time(configurable)
+		- Subsequent HTTP messages between the same client server are sent over the open connection
+		- client can send request as soon as it encounters a referenced object, without waiting for replies to pending requests(pipelining)
+- **How Non-persistent connection works when open the url http://www.someuni.edu.au/somedepartment/home.index**
+	1. The HTTP client initiates a TCP connection(via its socket) to the server www.someuni.edu.au on port *80*(the default port number for HTTP)
+	2. The HTTP server process accepts the connection requests and send a *response message*(via its socket)
+	3. The HTTP client process sends a HTTP *request message*(via its socket) to the HTTP server. The request message includes the path name /somedepartment/home.index
+	4. The HTTP server process:
+		1. receives the request message(via its socket)
+		2. retrieves the objects at the path name /somedepartment/home.index
+		3. encapsulate the object in an HTTP *response message*
+		4. send it to the client(via its socket)
+	5. The HTTP server process tells the TCP to close the TCP connection. But the TCP does not actually terminate the connection until it knows for sure the client has received the response message intact
+	6. The HTTP client receives the response message(via its socket). The TCP connection terminates. The message indicates that the encapsulated objects is an HTML file. The client:
+		1. Extracts the HTML file from the message
+		2. Examine the HTML file
+		3. Find reference to all other objects
+	7. The first four steps are then repeated for each of the referenced objects
+- **HTTP Message**
+	- HTTP Request Message Format
+		![HTTP Request Format](Image/HTTP_Request)
+	- HTTP Response Message Format
+		![HTTP Response Format](Image/HTTP_Response)
