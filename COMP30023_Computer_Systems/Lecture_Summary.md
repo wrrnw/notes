@@ -118,7 +118,7 @@
 	7. The first four steps are then repeated for each of the referenced objects
 - **HTTP Message**
 	- HTTP Request Message Format
-		![HTTP Request Format](Image/HTTP_Request)
+		![HTTP Request Format](Image/HTTP_Request.png)
 		- Request line: method | URL | Version
 		- Request methods:
 			- GET: Request an object in the specific URL
@@ -127,7 +127,7 @@
 			- PUT: It allows a user to upload an object to a specific path on a specific Web server
 			- DELETE: It allows a user to delete an object on a Web server
 	- HTTP Response Message Format
-		![HTTP Response Format](Image/HTTP_Response)
+		![HTTP Response Format](Image/HTTP_Response.png)
 		- Status line: version | status code | phrase
 		- HTTP response code:
 			- 1xx: Information
@@ -152,6 +152,6 @@
 		2. A *cookie header line* in HTTP request message
 		3. A *cookie file* kept on user's end system and managed by the user's browser
 		4. A back-end *database* at the Web site
-![Cookie Example](Image/Cookie_example)
+![Cookie Example](Image/Cookie_example.png)
 
 ## Lecture 3
