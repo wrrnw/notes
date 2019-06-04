@@ -155,3 +155,27 @@
 ![Cookie Example](Image/Cookie_example.png)
 
 ## Lecture 3
+- **File Transfer Protocol(FTP)**
+	- In a typical FTP session, the user is *local host* and wants to transfer files to and from a *remote host*
+	- FTP uses two parallel TCP connections to transfer a file:
+		- Control connection:
+			-  Sending control information between the two hosts including:
+				- User identification, Password, Commands to change remote directory, Commands to "put" and "get" files
+			- At the beginning, the client side initiates a TCP control connection to the server on port 21
+			- The client side sends the user identification, password as well as the commands over this control connection during the entire FTP session(Persistent)
+			- The commands and replies are sent over the control connection in 7-bit ASCII format.
+			- Each command consists of four uppercase ASCII characters, some with optional arguments. Some common commands:
+				- USER *username*: Used to send the user identification to the server
+				- PASS *password*: Used to send user password to the server
+				- LIST: Used to send back a list of all the files in the current remote directory. The list of files is sent over a *new and non-persistent data connection*
+				- RETR *filename*: Used to retrieve (i.e., get) a file from the current directory of the remote host
+				- STOR *filename*: Used to store (i.e., put) a file into the current directory of the remote host
+			- The replies are *three-digit number*, followed by an optional message. Some typical replies:
+				- 331 Username OK, password required
+				- 125 Data connection already open; transfer starting
+				- 425 Can't open data connection
+				- 452 Error writing file
+		- Data connection:
+			- Automatically send a file
+			- When the server side receives a command for a file transfer(either to or from the remote host), the server side initiates a TCP data connection to the client side at port 20
+			- FTP sends exactly one file over the data connection after which the data connection *will be closed*(Non-persistent)
