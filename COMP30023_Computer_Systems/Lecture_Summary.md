@@ -84,4 +84,10 @@
 		- The HTTP needs to be implemented in two programs: client program and server program
 		- The client program and the server program are executing on the different end systems and talk to each other by exchanging HTTP messages
 		- *Web page*: a document consisting of objects
-		- *Object*:
+		- *Object*: a file that is addressable by URL, such as a HTML file, a JPEG image, a JAVA applet, and a video clip
+		- *URL(Uniform Resource Locator)*: consists of
+			1. the *hostname* of the server that houses the objects
+			2. the objects *path name*
+			![URL Example](Image/URL_example.png)
+		- Web browsers implement the client side of HTTP while the web servers implement the server side of HTTP
+		- Most web pages include a base html file and several referenced objects
