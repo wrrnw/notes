@@ -118,6 +118,6 @@
 	7. The first four steps are then repeated for each of the referenced objects
 - **HTTP Message**
 	- HTTP Request Message Format
-		![HTTP Request Format](Image/HTTP_Request)
+		![HTTP Request Format](Image/HTTP_Request.png)
 	- HTTP Response Message Format
-		![HTTP Response Format](Image/HTTP_Response)
+		![HTTP Response Format](Image/HTTP_Response.png)
