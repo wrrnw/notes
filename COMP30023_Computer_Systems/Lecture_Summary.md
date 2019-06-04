@@ -118,6 +118,40 @@
 	7. The first four steps are then repeated for each of the referenced objects
 - **HTTP Message**
 	- HTTP Request Message Format
-		![HTTP Request Format](Image/HTTP_Request.png)
+		![HTTP Request Format](Image/HTTP_Request)
+		- Request line: method | URL | Version
+		- Request methods:
+			- GET: Request an object in the specific URL
+			- POST: It is used when the user fills out the form
+			- HEAD: Detect whether an object can be requested successfully
+			- PUT: It allows a user to upload an object to a specific path on a specific Web server
+			- DELETE: It allows a user to delete an object on a Web server
 	- HTTP Response Message Format
-		![HTTP Response Format](Image/HTTP_Response.png)
+		![HTTP Response Format](Image/HTTP_Response)
+		- Status line: version | status code | phrase
+		- HTTP response code:
+			- 1xx: Information
+				- 100 - Server agrees to handle client's request
+			- 2xx: Success
+				- 200 - Request succeeded
+				- 204 - No content present
+			- 3xx: Redirection
+				- 301 - Page moved
+				- 304 - Cached page still valid
+			- 4xx: Client error
+				- 403 - Forbidden page
+				- 404 - Page not found
+			- 5xx: Server error
+				- 500 - Internal server error
+				- 503 - Try again later
+- **Cookie**
+	- HTTP is a *stateless* protocol. An HTTP server maintains no information about the clients
+	- For allowing Web servers to identify users, HTTP uses *cookies*
+	- The cookie has four components:
+		1. A *cookie header line* in HTTP response message
+		2. A *cookie header line* in HTTP request message
+		3. A *cookie file* kept on user's end system and managed by the user's browser
+		4. A back-end *database* at the Web site
+![Cookie Example](Image/Cookie_example)
+
+## Lecture 3
