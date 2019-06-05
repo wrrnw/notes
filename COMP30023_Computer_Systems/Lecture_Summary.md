@@ -207,4 +207,33 @@
 			- Post Office Protocol - Version 3 (POP3)
 			- Internet Mail Access Protocol (IMAP)
 			- HTTP
-- **Domain Name System(DNS)** 
+- **Domain Name System(DNS)**
+	- An application-layer protocol to *translate user-defined host name to IP address*
+	- The DNS adds an additional delay to the Internet Applications that uses it
+	- All DNS query and reply messages are sent through UDP datagrams to port 53
+	- In addition to translate hostnames to IP addresses, DNS also provides services:
+		- Host aliasing
+			- A host can have one or more alias names
+		- Mail Server aliasing
+		- Load distribution
+	- Distributed, Hierarchical database of mappings
+		- Problems with centralized database
+			- A single point of failure
+			- Traffic volume
+			- Distant centralized database
+			- Maintenance
+		- DNS uses a large number of servers, organized hierarchical and distributed around world. No single DNS server has all of the mappings for all of the hosts in the Internet. Mappings are distributed around the DNS servers
+![Hierarchy of DNS Server](Image/Hierarchy_of_DNS_server.png)
+		- Root DNS Servers:
+			- 13 root DNS servers over the world
+		- Top-Level Domain(TLD) DNS Servers:
+			- Top-level domain such as *com, org, net, edu and gov
+			- All of the country top-level domains such as au, uk, fr, ca and jp
+		- Authoritative DNS Server
+			- Every organization with publicly accessible on the internet *must* provide publicly accessible DNS records that maps the name of those hosts to IP addresses
+			- An organization DNS server houses these DNS records
+		- Local DNS Server
+			- Each ISP, such as an university, an company or a residential ISP has a local DNS server (also called a default name server)
+			- When a host makes a DNS query, the query is sent to the local DNS server, which acts like a proxy, forwarding the query into the DNS server hierarchy
+## Lecture 4
+ 
