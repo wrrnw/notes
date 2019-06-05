@@ -308,7 +308,7 @@
 	- Except for above two jobs, it adds nothing to IP
 	- *Connectionless* and *unreliable*
 		- No guarantee on *delivery*, *order* and *integrity*
-	![UDP Segment Structure](Image/UDP_segment_structure)
+	![UDP Segment Structure](Image/UDP_segment_structure.png)
 - **Why do we still need UDP?**
 	- Finer application-level control over what is sent and when
 		- Data is sent immediately
@@ -330,9 +330,9 @@
 		- Compute the 1s complement of the sum
 		- The result is put in the checksum field of the UDP segment
 	- Example
-	![UDP checksum example 1](Image/UDP_checksum_example1)
-	![UDP checksum example 2](Image/UDP_checksum_example2)
-	![UDP checksum example 3](Image/UDP_checksum_example3)
+	![UDP checksum example 1](Image/UDP_checksum_example1.png)
+	![UDP checksum example 2](Image/UDP_checksum_example2.png)
+	![UDP checksum example 3](Image/UDP_checksum_example3.png)
 	- Error Detection by UDP Checksum
 		- At the receiver, compute the sum of all 16-bit words and the checksum
 			- If no errors are introduced into the packet, then clearly the sum at the receiver will be 1111111111111111
