@@ -66,8 +66,8 @@
 	- **Physical Layer**
 		- While the job of the link layer is to move the entire frame from one network element to the next element in the route, the job of the physical layer is to move the individual bits within the frames from the network element to the next
 		- The protocols at this layer are also link dependent and further depend on the actual transmission medium of the link
-- The layer Application, Transport, Network are end to end
-- The layer Link, Physical are point to point
+- The Application layer, Transport layer, Network layer are end to end
+- The Link layer, Physical layer are point to point
 - **Overview of the OSI(Open Systems interconnection) model**
 	- Except for layer 5, 6, all other layers have roughly the same functionalities as TCP/IP model
 	- **Presentation Layer**
@@ -145,8 +145,7 @@
 				- 500 - Internal server error
 				- 503 - Try again later
 - **Cookie**
-	- HTTP is a *stateless* protocol. An HTTP server maintains no information about the clients
-	- For allowing Web servers to identify users, HTTP uses *cookies*
+	- Background: HTTP is a *stateless* protocol. An HTTP server maintains no information about the clients. For allowing Web servers to identify users, HTTP uses *cookies*
 	- The cookie has four components:
 		1. A *cookie header line* in HTTP response message
 		2. A *cookie header line* in HTTP request message
@@ -179,3 +178,33 @@
 			- Automatically send a file
 			- When the server side receives a command for a file transfer(either to or from the remote host), the server side initiates a TCP data connection to the client side at port 20
 			- FTP sends exactly one file over the data connection after which the data connection *will be closed*(Non-persistent)
+- **Simple Mail Transfer Protocol(SMTP)**
+	- Three major components in email systems:
+		- User agents
+		- Mail servers
+		- Simple Mail Transfer Protocol(SMTP)
+	- SMTP: Transfer messages from the *senders' mail servers* to the *recipients' mail servers*
+	- Mail message format
+![Mail message format](Image/Mail_msg_format.png)
+	- An overview example of SMTP
+		1. Alice composes a message with Bob's email address
+		2. Alice's user agent sends the message to her mail server
+		3. The client side of SMTP on Alice's mail server opens a *direct persistent TCP connection* to an SMTP server at *port 25* on Bob's mail server
+		4. The client side sends the message over the TCP connection
+		5. The SMTP server side receives the messages and place it into Bob's mailbox
+		6. Bob invokes his user agent to obtain the message at his convenience
+	- Comparison between HTTP and SMTP
+		- Similarity
+			- Both of HTTP and SMTP are used to transfer files from one host to another
+			- Both HTTP and SMTP use persistent TCP connection
+		- Difference
+			- HTTP is mainly a pull protocol. SMTP is primarily a push protocol
+			- SMTP requires each message, including the body of the each message to be in *7-bit ASCII format*. HTTP does not has this restriction
+			- HTTP encapsulates each object in its own HTTP response message. SMTP places all of message's objects into one message
+	- Mail Access Protocol
+		- Bob cannot use SMTP to obtain the message. Because SMTP is a push protocol, while obtaining messages is a pull operation
+		- To obtain message from mail server, we use Mail Access Protocol:
+			- Post Office Protocol - Version 3 (POP3)
+			- Internet Mail Access Protocol (IMAP)
+			- HTTP
+- **Domain Name System(DNS)** 
