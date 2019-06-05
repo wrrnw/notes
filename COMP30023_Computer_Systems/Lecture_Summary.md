@@ -1,5 +1,5 @@
 # COMP30023 Computer Systems Lecture Summary
-## Lecture 1
+## Week 1 Lecture 1
 - **What is Internet?**
 	- Internet is a network that interconnects with hundreds of millions of computing devices
 	- These devices are called *end systems* or *hosts*
@@ -26,7 +26,7 @@
 - **Service Models:**
 	- TCP/IP Model: Application Layer - Transport Layer - Network Layer - Link Layer - Physical Layer
 	- OSI Model(Open Systems Interconnection): Application Layer - Presentation Layer - Session Layer - Transport Layer - Network Layer - Link Layer - Physical Layer
-## Lecture 2
+## Week 1 Lecture 2
 - **Overview of TCP/IP Model**
 	- **Application Layer**
 		- The packets of information at this layer are called *messages*
@@ -80,6 +80,9 @@
 	- Sockets
 		- The interface between the application layer and the transport layer
 		- Applications send and receive message through sockets
+		- Each socket has a *unique identifier*
+		- The format of the identifier depends on what transport-layer protocol is used(whether UDP or TCP)
+		- Each transport-layer segment has a set of fields for identifying sockets
 	- HTTP
 		- The HTTP needs to be implemented in two programs: client program and server program
 		- The client program and the server program are executing on the different end systems and talk to each other by exchanging HTTP messages
@@ -153,7 +156,7 @@
 		4. A back-end *database* at the Web site
 ![Cookie Example](Image/Cookie_example.png)
 
-## Lecture 3
+## Week 2 Lecture 1
 - **File Transfer Protocol(FTP)**
 	- In a typical FTP session, the user is *local host* and wants to transfer files to and from a *remote host*
 	- FTP uses two parallel TCP connections to transfer a file:
@@ -235,7 +238,7 @@
 		- Local DNS Server
 			- Each ISP, such as an university, an company or a residential ISP has a local DNS server (also called a default name server)
 			- When a host makes a DNS query, the query is sent to the local DNS server, which acts like a proxy, forwarding the query into the DNS server hierarchy
-## Lecture 4
+## Week 2 Lecture 2
 - **Version Control**
 	- Version control is a system that records the changes to a file or set of files over time so that we can recall specific version later
 	- Local Version Control System
@@ -268,6 +271,70 @@
 ![Git](Image/Git.png)
 	- Branching Feature
 
-## Lecture 5
-- ****
- 
+## Week 3 Lecture 1
+- **Transport-Layer Services**
+	- An application protocol passes the message to the transport layer via sockets
+	- A transport-layer protocol provides for logic communication between application processes running on different hosts
+	- The transport layer passes the segment to the network layer at the sending end system
+- **The relation between Transport Layer and Network Layer**
+	- A transport-layer protocol provides for *logic communication between application processes running on different hosts*
+	- A network-layer protocol provides *logical communication between different hosts*
+	- So, a transport-layer protocol is *process-to-process*, while a network-layer protocol is *host-to-host*
+![Transport Layer and Network Layer](Image/Transport_layer.png)
+	- An analogy in reality
+![Transport Layer and Network Layer Analogy](Image/Analogy.png)
+- **Service from the Network Layer**
+	- It has IP(Internet Protocol)
+		- IP provides logical communication between hosts
+		- IP is an unreliable service:
+			- It does not guarantee *segment delivery*
+			- It does not guarantee *orderly delivery* of segments
+			- It does not guarantee the *integrity of the data* in the segments
+- **Multiplexing and Demultiplexing**
+	- In order to extend the host-to-host delivery service to process-to-process delivery service
+	- The transport layer at receiving host does not actually deliver the data directly to a process, but instead to an intermediary socket
+	- Demultiplexing
+		- At the receiving end, the transport layer examines the fields in segment to *identify* the receiving sockets and then *direct* the segment to that socket
+	- Multiplexing
+		- *Gather* data chunks at the source host from different sockets
+		- *Encapsulate* each data chunk with header information to create segments
+		- *Pass* the segments to the network layer
+- **User Datagram Protocol(UDP)**
+	- no-frills and bare-bone
+	- It does as little as a transport-layer can do
+		- Multiplexing and Demultiplexing
+			- In UDP, sockets are *identified by port numbers*
+		- Some light error checking
+	- Except for above two jobs, it adds nothing to IP
+	- *Connectionless* and *unreliable*
+		- No guarantee on *delivery*, *order* and *integrity*
+	![UDP Segment Structure](Image/UDP_segment_structure)
+- **Why do we still need UDP?**
+	- Finer application-level control over what is sent and when
+		- Data is sent immediately
+		- No congestion control
+		- Real-time applications often:
+			- require minimum sending rate
+			- do not want to overly delay segment transmission
+			- can tolerate some data loss
+	- No connection establishment
+		- A principle reason why DNS runs over UDP rather than TCP
+	- No connection state
+		- Low system overhead(no buffers, no parameters)
+	- Small packet header overhead
+		- UDP has only 8 bytes of overhead, while TCP has 20
+- **UDP Checksum**
+	- The UDP checksum is used to determine whether bits within the UDP segment have been altered as it moves from source to destination
+	- The UDP checksum at the sender side is computed as follows:
+		- Compute the sum of all the 16-bit words in the segment, with overflow encountered during the sum being wrapped around
+		- Compute the 1s complement of the sum
+		- The result is put in the checksum field of the UDP segment
+	- Example
+	![UDP checksum example 1](Image/UDP_checksum_example1)
+	![UDP checksum example 2](Image/UDP_checksum_example2)
+	![UDP checksum example 3](Image/UDP_checksum_example3)
+	- Error Detection by UDP Checksum
+		- At the receiver, compute the sum of all 16-bit words and the checksum
+			- If no errors are introduced into the packet, then clearly the sum at the receiver will be 1111111111111111
+				- Even though we get 1111111111111111, it still not guarantee that there is no error in the segment(If the same digit of two words corrupted, the result remains the same). Nonetheless, if we know that the corruption is just on one bit, then checksum can guarantee to correctly detect the corruption
+			- Otherwise, we know that there must be some errors in the packet
