@@ -236,4 +236,38 @@
 			- Each ISP, such as an university, an company or a residential ISP has a local DNS server (also called a default name server)
 			- When a host makes a DNS query, the query is sent to the local DNS server, which acts like a proxy, forwarding the query into the DNS server hierarchy
 ## Lecture 4
+- **Version Control**
+	- Version control is a system that records the changes to a file or set of files over time so that we can recall specific version later
+	- Local Version Control System
+		- Duplicate files in different directories
+	- Centralized Version Control Systems(CVCS)
+		- A single server contains all the version files, and a number of clients that check out files from that central place
+			- CVS
+			- SVN
+			- Perforce
+	- Distributed Version Control Systems(DVCS)
+		- Clients don't just check out the latest snapshot of the files; rather, they fully mirror the repository, including the its full history
+			- Git
+			- Mercurial
+			- Bazaar
+			- Darcs
+	- Why do we use Git?
+		- While those other version control system utilize delta-based version control, Git uses a series of snapshot
+		- Uses checksums
+			- Everything in Git is checksummed before it is stored and is then referred to by checksum
+			- The checksum is a 40-character string composed of hexadecimal characters(0-9 and a-f), which is computed by SHA-1 hash based on the content of a file and the directory structure in Git. For example, 24b9da6552252987aa493b52f8696cd6d3b00373
+		- Nearly all operations is Local
+			- Most of operation in Git need only local files and resources to operate. Because Git stores the entire history of the project in each local computer
+	- Three Stages in Git
+		- Modified
+			- The file has changed but not yet been committed to the database
+		- Staged
+			- The current version of the modified file is marked to be put into the next commit snapshot
+		- Committed
+			- The file is safely stored in local database
+![Git](Image/Git.png)
+	- Branching Feature
+
+## Lecture 5
+- ****
  
