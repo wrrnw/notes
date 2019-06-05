@@ -238,7 +238,7 @@
 		- Local DNS Server
 			- Each ISP, such as an university, an company or a residential ISP has a local DNS server (also called a default name server)
 			- When a host makes a DNS query, the query is sent to the local DNS server, which acts like a proxy, forwarding the query into the DNS server hierarchy
-## Week 2 Lecture 2
+## Week 2 Lecture 2 - Git
 - **Version Control**
 	- Version control is a system that records the changes to a file or set of files over time so that we can recall specific version later
 	- Local Version Control System
@@ -338,3 +338,21 @@
 			- If no errors are introduced into the packet, then clearly the sum at the receiver will be 1111111111111111
 				- Even though we get 1111111111111111, it still not guarantee that there is no error in the segment(If the same digit of two words corrupted, the result remains the same). Nonetheless, if we know that the corruption is just on one bit, then checksum can guarantee to correctly detect the corruption
 			- Otherwise, we know that there must be some errors in the packet
+# Week 3 Lecture 2 - RDT
+- **Over a Perfectly Reliable Channel: rdt 1.0**
+	![rdt1.0 picture1](Image/rdt1.0_pic1.png)
+	![rdt1.0 picture2](Image/rdt1.0_pic2.png)
+- **Over a Channel with Bit Errors: rdt 2.0**
+	- bits in a packet may be corrupted
+	- The positive and negative acknowledgements allow  the receiver to let the sender know what has received correctly, what have been received in error and thus requires repeating
+	- Reliable data transfer protocols based on such retransmission are known as ARQ(Automatic Repeat reQuest) protocols
+	- Three additional protocol capabilities are required in ARQ protocols
+		- Error detection
+			- A mechanism (e.g. checksum) to allow receiver to detect bit errors
+		- Receiver feedback
+			- Explicit positive (ACK) and negative (NAK) acknowledgements (i.e., packets) from the receiver to the sender
+			- One bit suffices, i.e., 1 = ACK and 0 = NAK
+		- Retransmission
+			- The sender needs to retransmit a packet when it is received in errors at the receiver
+		![rdt2.0 picture1](Image/rdt2.0_pic1.png)
+		![rdt2.0 picture2](Image/rdt2.0_pic2.png)
