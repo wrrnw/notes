@@ -416,7 +416,7 @@
 	- When receiver receives the out-of-order segments, it keeps the out-of-order segments and waits for the missing bytes to fill the gap
 	![Telnet example](Image/telnet_example.png)
 
-# Week 4 Lecture 2
+# Week 4 Lecture 2 - Socket programming
 - **Sockets for TCP**
 	- There are two types of sockets in the server side
 		- Welcoming socket: A special socket which welcomes some initial contact from a client process running on an arbitrary host
@@ -493,6 +493,89 @@
 
 
 # Week 5 Lecture 1
+- **Exercise**
+![TCP Exercise](Image/TCP_exercise.png)
+- **Timer in TCP**
+	- In rdt3.0, each packet sent is associated with a timer in the sender
+	- In TCP, there is only one timer in the sender
+		- Maintaining a large number of timers is a considerable overhead
+	- A simplified TCP sender does the following actions:
+		- Event 1: data received from application above
+			- Create a new TCP segment
+			- If timer is not running, Start timer
+		- Event 2: timer timeout
+			- Retransmit not-yet-acknowledge segment with smallest sequence number
+			- Start timer
+		- Event 3: ACK received acknowledging a not-yet-acknowledged segment
+			- If there are any not-yet-acknowledged segments, start timer
+- **Fast Retransmission**
+	- One of the problems with timeout-triggered retransmissions is that the timeout period can be relatively long. When a segment is lost, this long timeout period forces the sender to delay resending the lost packet, thereby increasing the end-to-end delay
+	- The mechanism of fast retransmission allows sender to retransmit a segment before timeout
+		- Event 4: Duplicate ACK received for a segment with sequence number y
+			- Increase the duplicate ACK counter of segment y by 1
+			- If this counter reaches to 3
+				- Resend the segment y
+				- Reset the counter of segment y to 0
+	- In other words, then the sender receives four ACK for a segment y (one original ACK and three duplicate ACK's), the sender resend the segment y before timeout
+- **TCP Flow Control**
+	- TCP provides a flow-control service to its applications to eliminate the possibility of the sender overflowing the receiver's buffer
+	- The basic idea is to let the sender know how much free buffer space is available at the receiver
+	![RWND demonstration](Image/rwnd_demo.png)
+	- LastByteRcvd - LastByteRead <= RcvBuffer
+	- rwnd = RcvBuffer - [LastByteRcvd - LastByteRead]
+	- The sender must ensure: LastByteSent - LastByteAcked <= rwnd
+	- **Sliding Window** - See Lecture Notes
+		- *Window Update*
+			- Option 1: Receiver can initiate an update by sending a WindowUpdate
+			- Option 2: Sender can monitor and initiate an update by sending a ZeroWindowProbe. On receipt of 0 size window, sender:
+				- Starts Persist Timer
+				- Persist Timer will periodically send ZeroWindowProbe segments
+		- *Segment Loss*
+			- ACK + 3 DupACKs = Fast Retransmission
+		- *Fast Retransmission*
+		- *Deadlock*
+			- Sender won't send any more data (window size is 0)
+			- Receiver won't receive anything, so won't send any ACKs to increase window size
+- **TCP Congestion Control**
+	- The TCP congestion control mechanism is that the sender needs to *control its send rate according to the congestion state of the network*
+	- How does the sender control its traffic send rate?
+		- Congestion window cwnd
+		- LastByteSent - LastByteAcked <= min {cwnd, rwnd}
+	- How does the sender perceive the network congestion?
+		- Segment loss
+	- What algorithm should the sender use to perform congestion control?
+		- Slow start
+		- Congestion avoidance
+		- Fast recovery
+	- Basic Definitions:
+		- *Maximum Segment Size (MSS)*: the maximum allowable size of the data field in a segment
+		- *Round-trip Timer (RTT)*: the time that a segment is sent to the receiver and its ACK is sent back to the sender
+		- *Transmission Round*: a;;the segments in the congestion window are sent out to the receiver and their ACK's are sent back to the sender
+			- In pipelined transmission, we can regard RTT = Transmission Round
+	- **Slow Start**
+		- Set cwnd = 1 MSS
+		- For each transmission round
+			- For each ACK for a not-yet-acknowledged segment:
+				- cwnd = cwnd + 1MSS
+				- if cwnd == ssthresh (slow-start threshold)
+					- Run the Congestion Avoidance algorithm
+				- Round 1: cwnd = 1 MSS, increase by 1 MSS
+				- Round 2: cwnd = 2 MSS, increase by 2 MSS
+				- Round 3: cwnd = 4 MSS, increase by 4 MSS
+				...
+				After each round (before cwnd reaching to ssthresh), the size of cwnd is doubled
+			- If a timeout event occurs
+				- ssthresh = cwnd / 2
+				- cwnd = 1 MSS
+			- If a fast transmission event occurs
+				- ssthresh = cwnd / 2
+				- cwnd = ssthresh + 3 MSS
+				- Run the Fast Recovery algorithm
+	- **Congestion Avoidance**
+		-
+	- **Fast Recovery**
+		-
+
 
 
 # Week 5 Lecture 2
@@ -504,10 +587,7 @@
 # Week 6 Lecture 2 Mid-Sem Test
 
 
-# Week 7 Lecture 1
-
-
-# Week 7 Lecture 2
+# Week 7 Lecture 1 & 2
 
 
 # Week 8 Lecture 1
