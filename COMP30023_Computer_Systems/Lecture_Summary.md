@@ -26,6 +26,8 @@
 - **Service Models:**
 	- TCP/IP Model: Application Layer - Transport Layer - Network Layer - Link Layer - Physical Layer
 	- OSI Model(Open Systems Interconnection): Application Layer - Presentation Layer - Session Layer - Transport Layer - Network Layer - Link Layer - Physical Layer
+
+
 ## Week 1 Lecture 2
 - **Overview of TCP/IP Model**
 	- **Application Layer**
@@ -156,6 +158,7 @@
 		4. A back-end *database* at the Web site
 ![Cookie Example](Image/Cookie_example.png)
 
+
 ## Week 2 Lecture 1
 - **File Transfer Protocol(FTP)**
 	- In a typical FTP session, the user is *local host* and wants to transfer files to and from a *remote host*
@@ -230,14 +233,17 @@
 		- Root DNS Servers:
 			- 13 root DNS servers over the world
 		- Top-Level Domain(TLD) DNS Servers:
-			- Top-level domain such as *com, org, net, edu and gov
-			- All of the country top-level domains such as au, uk, fr, ca and jp
+			- Top-level domain such as *com*, *org*, *net*, *edu* and *gov*
+			- All of the country top-level domains such as *au*, *uk*, *fr*, *ca* and *jp*
 		- Authoritative DNS Server
 			- Every organization with publicly accessible on the internet *must* provide publicly accessible DNS records that maps the name of those hosts to IP addresses
 			- An organization DNS server houses these DNS records
 		- Local DNS Server
 			- Each ISP, such as an university, an company or a residential ISP has a local DNS server (also called a default name server)
 			- When a host makes a DNS query, the query is sent to the local DNS server, which acts like a proxy, forwarding the query into the DNS server hierarchy
+
+
+
 ## Week 2 Lecture 2 - Git
 - **Version Control**
 	- Version control is a system that records the changes to a file or set of files over time so that we can recall specific version later
@@ -270,6 +276,8 @@
 			- The file is safely stored in local database
 ![Git](Image/Git.png)
 	- Branching Feature
+
+
 
 ## Week 3 Lecture 1
 - **Transport-Layer Services**
@@ -338,13 +346,15 @@
 			- If no errors are introduced into the packet, then clearly the sum at the receiver will be 1111111111111111
 				- Even though we get 1111111111111111, it still not guarantee that there is no error in the segment(If the same digit of two words corrupted, the result remains the same). Nonetheless, if we know that the corruption is just on one bit, then checksum can guarantee to correctly detect the corruption
 			- Otherwise, we know that there must be some errors in the packet
+
+
 # Week 3 Lecture 2 - RDT
 - **Over a Perfectly Reliable Channel: rdt 1.0**
 	![rdt1.0 picture1](Image/rdt1.0_pic1.png)
 	![rdt1.0 picture2](Image/rdt1.0_pic2.png)
 - **Over a Channel with Bit Errors: rdt 2.0**
 	- bits in a packet may be corrupted
-	- The positive and negative acknowledgements allow  the receiver to let the sender know what has received correctly, what have been received in error and thus requires repeating
+	- The positive and negative acknowledgements allow the receiver to let the sender know what has been received correctly, what has been received in error and thus requires repeating
 	- Reliable data transfer protocols based on such retransmission are known as ARQ(Automatic Repeat reQuest) protocols
 	- Three additional protocol capabilities are required in ARQ protocols
 		- Error detection
@@ -356,3 +366,76 @@
 			- The sender needs to retransmit a packet when it is received in errors at the receiver
 		![rdt2.0 picture1](Image/rdt2.0_pic1.png)
 		![rdt2.0 picture2](Image/rdt2.0_pic2.png)
+- **Over a Channel with Bit Errors: rdt 2.1**
+	- Since the ACK/NAK could also corrupt. The question is how the protocol should handle the errors in ACK/NAK
+		- The sender resends the current data packet when it receives the garbled ACK or NAK packet
+			- Issue: The receiver cannot know the a priori whether the arriving packet contains new data or is a retransmission
+			- Solution: Add a new field called sequence number in the data packet. In a stop-and-wait protocol, a 1-bit sequence number will suffice. Specifically, the sender alternates the 1-bit sequence number between 0 and 1 for every new data packet
+		![rdt2.1 picture1](Image/rdt2.1_pic1.png)
+		![rdt2.1 picture2](Image/rdt2.1_pic2.png)
+- **Over a Channel with Bit Errors: rdt 2.2**
+	- Get rid of NAK packets from rdt 2.1
+	- Instead of sending a NAK packet to the sender, the receiver sends an ACK packet for the last correctly received packet
+	- For example, the last correctly received packet at receiver has sequence number 1. If the receiver now gets a corrupted packet:
+		- In rdt 2.1, it needs to send a NAK packet
+		- In rdt 2.2, it sends an ACK packet indicating that the last correctly received packet is with sequence number 1. In this case, the sender knows that the receiver doesn't receive the packet with sequence number 0, and thus, resend the packet.
+		![rdt2.2 picture1](Image/rdt2.2_pic1.png)
+		![rdt2.2 picture2](Image/rdt2.2_pic2.png)
+- **Over a Lossy Channel with Bit Errors: rdt 3.0**
+	- In addition to corrupted bits, the underlying channel can also lose packets
+	- Two additional protocol capabilities must be addressed
+		- Detect packet loss
+			- Timer can help
+		- Retransmission when packet loss
+			- The techniques of checksums, sequence numbers, ACK packets and retransmissions developed in rdt 2.2 are sufficient to solve
+		![rdt3.0 picture1](Image/rdt3.0_pic1.png)
+		![rdt3.0 picture2](Image/rdt3.0_pic2.png)
+		![rdt3.0 picture3](Image/rdt3.0_pic3.png)
+
+
+# Week 4 Lecture 1
+
+
+# Week 4 Lecture 2
+
+
+# Week 5 Lecture 1
+
+
+# Week 5 Lecture 2
+
+
+# Week 6 Lecture 1 First Half Revision
+
+
+# Week 6 Lecture 2 Mid-Sem Test
+
+
+# Week 7 Lecture 1
+
+
+# Week 7 Lecture 2
+
+
+# Week 8 Lecture 1
+
+
+# Week 8 Lecture 2
+
+
+# Week 9 Lecture 1
+
+
+# Week 10 Lecture 1
+
+
+# Week 10 Lecture 2
+
+
+# Week 11 Lecture 1
+
+
+# Week 11 Lecture 2
+
+
+# Week 12 Lecture 1
