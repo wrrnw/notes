@@ -394,7 +394,27 @@
 
 
 # Week 4 Lecture 1
-
+- **Pipelined RDT Protocols**
+	- Although rdt3.0 is functionally correct, the performance is not satisfied because it is a stop-and-wait protocol
+	- The sender is allowed to send multiple packets without waiting for acknowledgement through pipelined rdt protocol
+	- Problem:
+		- The 1-bit sequence number is no longer sufficient. Each packet in-transit must have a unique sequence number
+		- Buffers in both the sender and the receiver are needed
+			- The sender may need to buffer the packets that have been transmitted but not yet acknowledged
+			- The receiver may need to buffer the packets that have been correctly received
+- **Transmission Control Protocol(TCP)**
+	- TCP is a type of Pipelined RDT
+	- TCP is *connection-oriented*, because two processes must "handshake" before sending data
+	- TCP creates a number of *variables* and *buffers* during the 3-way handshake
+	![Three-way handshake](Image/three_way_handshake.png)
+	- TCP is *full-duplex* such that both the two sides can send data to each other
+	- TCP Structures
+	![TCP Structure](Image/tcp_structure.png)
+		- Sequence Number: The byte-stream number of the first byte in the data field of the segment
+		- Acknowledgement Number: The acknowledgement number that Host A puts in its segment is the sequence number of the next byte that Host A is expecting from Host B
+	- TCP only acknowledge bytes up to the first missing byte in the stream. Thus, TCP is said to provide *cumulative acknowledgements*
+	- When receiver receives the out-of-order segments, it keeps the out-of-order segments and waits for the missing bytes to fill the gap
+	![Telnet example](Image/telnet_example.png)
 
 # Week 4 Lecture 2
 
