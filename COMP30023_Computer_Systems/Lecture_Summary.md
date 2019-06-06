@@ -417,6 +417,79 @@
 	![Telnet example](Image/telnet_example.png)
 
 # Week 4 Lecture 2
+- **Sockets for TCP**
+	- There are two types of sockets in the server side
+		- Welcoming socket: A special socket which welcomes some initial contact from a client process running on an arbitrary host
+		- Connection socket: A dedicated socket for a particular client process
+	- A TCP socket is identified by four-tuples: (source IP address, source port number, destination IP address, destination port number)
+	- The source IP address and destination IP address are absent from the segment header. Because these information will be sent by the underlying operating system automatically along with the connection-request segment
+	- The size of the TCP segment header is 20 bytes
+	- TCP combines an acknowledgement and a data packet together in one segment
+-  **Socket Programming with TCP**
+	- Before the client and the server can start to send data to each other, a TCP connection must be established
+	- The connection is associated with 	
+		- The client socket address (IP address and port #)
+		- The server socket address (IP address and port #)
+	- When one side wants to send data to the other side, it *just drops the data into the TCP connect via its socket*
+	- This is different from UDP, where the destination address must be attached to the packet
+	- A Python implementation of the client side of the socket programming with TCP
+	``` python
+	// We don't need to specify the client address as the underlying operating system will do this for us
+	from socket import *
+	serverName = 'servername' // The destination address
+	serverPort = 12000 // The destination address
+	clientSocket = socket(AF_INET, SOCK_STREAM) // AF_INET: underlying network using IPv4, SOCK_STREAM: it is a TCP socket
+	clientSocket.connect((serverName, serPort)) // Initiate a TCP connection to the server (The three-way hand shake is performed)
+	sentence = raw_input('Input lowercse sentence:')
+	clientSocket.send(sentence)
+	modifiedSentence = clientSocket.recv(1024)
+	print 'From Server:', modifiedSentence
+	clientSocket.close()
+	```
+	- A python implementation of the server side of the socket programming with TCP
+	``` python
+	from socket import *
+	serverPort = 12000
+	serverSocket = socket(AF_INET, SOCK_STREAM)
+	serverSocket.bind(('',serverPort)) // Bind(assign) the port number 12000 to the server's socket
+	serverSocket.listen(1) // Let the server listen for TCP connection request from the client. The parameter specifies the maximum number of queued connections(at least 1)
+	print 'The server is ready to receive'
+	while 1:
+		connectionSocket, addr = serverSocket.accept() // When a connection request from a client arrives, the program invokes accept(), which creates a new socket connectionSocket dedicated to this particular client
+		sentence = connectionSocket.recv(1024)
+		capitalizedSentence = sentence.upper()
+		connectionSocket.send(capitalizedSentence)
+		connectionSocket.close()
+	```
+- **Socket Programming with UDP**
+	- Before sending a packet of data with UDP, we must first attach a destination address to the packet.
+	- A UDP socket is identified by a two-tuple: (destination IP address, destination port number)
+	- A Python implementation of the client side of the socket programming with UDP
+	``` python
+	// We don't need to specify the client address as the underlying operating system will do this for us
+	from socket import *
+	serverName = 'servername' // The destination address
+	serverPort = 12000 // The destination address
+	clientSocket = socket(scoket.AF_INET, socket.SOCK_DGRAM) // AF_INET: underlying network using IPv4, SOCK_DGRAM: it is a UDP socket
+	message = raw_input('Input lowercse sentence:')
+	clientSocket.sendto(message, (serverName, serverPort)) // Send the message to the destination address via clientSocket
+	modifiedMessage, serverAddress = clientSocket.recvfrom(2048) // Receive the modified message from the server, where 2048 is the buffer size, and serverAddress stores the address where the paclet is sent from
+	print modifiedMessage
+	clientSocket.close()
+	```
+	- A python implementation of the server side of the socket programming with UDP
+	``` python
+	from socket import *
+	serverPort = 12000
+	serverSocket = socket(AF_INET, SOCK_DGRAM) // Creat a UDP socket
+	serverSocket.bind(('',serverPort)) // Bind(assign) the port number 12000 to the server's socket
+	print 'The server is ready to receive'
+	while 1:
+		message, clientAddress = serverSocket.recvfrom(2048)
+		modifiedMessage = message.upper()
+		serverSocket.sendto(modifiedMessage, clientAddress)
+	```
+
 
 
 # Week 5 Lecture 1
