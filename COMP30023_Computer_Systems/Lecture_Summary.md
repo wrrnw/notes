@@ -28,7 +28,7 @@
 	- OSI Model(Open Systems Interconnection): Application Layer - Presentation Layer - Session Layer - Transport Layer - Network Layer - Link Layer - Physical Layer
 
 
-## Week 1 Lecture 2
+## Week 1 Lecture 2 - Application Layer
 - **Overview of TCP/IP Model**
 	- **Application Layer**
 		- The packets of information at this layer are called *messages*
@@ -159,7 +159,7 @@
 ![Cookie Example](Image/Cookie_example.png)
 
 
-## Week 2 Lecture 1
+## Week 2 Lecture 1 - Application Layer
 - **File Transfer Protocol(FTP)**
 	- In a typical FTP session, the user is *local host* and wants to transfer files to and from a *remote host*
 	- FTP uses two parallel TCP connections to transfer a file:
@@ -279,7 +279,7 @@
 
 
 
-## Week 3 Lecture 1
+## Week 3 Lecture 1 - Transport Layer
 - **Transport-Layer Services**
 	- An application protocol passes the message to the transport layer via sockets
 	- A transport-layer protocol provides for logic communication between application processes running on different hosts
@@ -348,7 +348,7 @@
 			- Otherwise, we know that there must be some errors in the packet
 
 
-# Week 3 Lecture 2 - RDT
+# Week 3 Lecture 2 - Transport Layer - RDT
 - **Over a Perfectly Reliable Channel: rdt 1.0**
 	![rdt1.0 picture1](Image/rdt1.0_pic1.png)
 	![rdt1.0 picture2](Image/rdt1.0_pic2.png)
@@ -393,7 +393,7 @@
 		![rdt3.0 picture3](Image/rdt3.0_pic3.png)
 
 
-# Week 4 Lecture 1
+# Week 4 Lecture 1 - Transport Layer
 - **Pipelined RDT Protocols**
 	- Although rdt3.0 is functionally correct, the performance is not satisfied because it is a stop-and-wait protocol
 	- The sender is allowed to send multiple packets without waiting for acknowledgement through pipelined rdt protocol
@@ -416,7 +416,7 @@
 	- When receiver receives the out-of-order segments, it keeps the out-of-order segments and waits for the missing bytes to fill the gap
 	![Telnet example](Image/telnet_example.png)
 
-# Week 4 Lecture 2 - Socket programming
+# Week 4 Lecture 2 - Transport Layer - Socket programming
 - **Sockets for TCP**
 	- There are two types of sockets in the server side
 		- Welcoming socket: A special socket which welcomes some initial contact from a client process running on an arbitrary host
@@ -492,7 +492,7 @@
 
 
 
-# Week 5 Lecture 1
+# Week 5 Lecture 1 - Transport Layer
 - **Exercise**
 ![TCP Exercise](Image/TCP_exercise.png)
 - **Timer in TCP**
@@ -578,7 +578,7 @@
 
 
 
-# Week 5 Lecture 2
+# Week 5 Lecture 2 - Transport Layer
 
 
 # Week 6 Lecture 1 First Half Revision
@@ -587,28 +587,104 @@
 # Week 6 Lecture 2 Mid-Sem Test
 
 
-# Week 7 Lecture 1 & 2
+# Week 7 Lecture 1 & 2 - TLS & Cryptography
+- **Transport Layer Security(TLS)**
+	- Objects of secure communication is to provide
+		- secure *private* communication between two end-points
+		- secure *integrity check* to ensure data does not change in transit
+		- secure *authentication* to establish identities of one or both of the end-points
+	- Transport Layer Security is also called by its old name "secure socket layer" / ssl
+	- The basis of HTTP
+	- Provides confidence the server is who it seems to be
+	- Encrypts transmission to prevent eavesdropping and modification
+	- TLS Handshake
+		![TLS Handshake](Image/TLS_handshake.png)
+		- TCP connection is established
+		- Client sends ClientHello to the server asking for secure connection, listing its supported "cipher suites"
+		- Server responds with ServerHello and selects one of the cipher suites that it supports, also include its certificate, and can request client send its certificate (mutual authentication)
+		- Client confirms validity of the certificate
+		- Client generates session key
+		- Handshake concludes and both parties share a key that is then used for  encrypting and decrypting message
+- **Cryptography**
+	- Encryption
+		- Hiding data from everyone except those holding the decryption key
+		- Output is cipher text
+	- Decryption
+		- Recovering the original data from the cipher text using the key
+		- Output is plaintext
+	- Modern cryptography is based on mathematics
+		- Problems that are well studied and believed "computational hard"
+			- Factorising the product of two large primes (RSA)
+			- Solving discrete logs (EIGamal)
+			- AES - substitution-permutation network
+	- Cryptography is not absolute - There is no perfect security
+		- Always susceptible to brute force attack
+		- The challenge is to make the brute force attack take so long as to be infeasible to perform within the useful lifetime of the data
+	- **Symmetric Cryptography**
+		- The same key is used for both encryption and decryption
+		- Encrypt(SecretKey, Message) -> Cipher Text
+		- Decrypt(SecretKey, Cipher Text) -> Message
+		- Modern Example is AES(Advanced Encryption Standards)
+			- AES breaks data into blocks and encrypts each block
+			- AES has different modes of operation
+				- ECB, CBC, CTR, etc
+				- Determines how each block is treated and linked
+			- ECB(Electronic Codebook)
+				- Simple, parallelizable
+				- Do not provide diffusion, may not even provide confidentiality
+				- Generally should not be used
+				![EBC](Image/EBC.png)
+			- CBC(Cipher Block Chaining)
+				- IV(Initialization Vector) - not secret, but must be random and not reused
+				- Encryption must be done sequentially
+				- Decryption could be done in parallel
+				- Loss of a block or corrupt IV prevents decryption of all subsequent blocks
+				![CBC](Image/CBC.png)
+			- Salt: Random value added to encryption or hash - *public*
+			- Pepper: Random value added to encryption or hash - *secret*
+	- **Asymmetric Cryptography**
+		- Two keys, one for encryption and the other one for decryption
+		- More commonly called public key cryptography
+		- At the heart of modern security
+			- Digital signature
+			- TLS(Transport Layer Security)
+			- PGP(Pretty Good Privacy)
+			- Secure Messaging
+			- End-to-End Encryption(WhatsApp, Signal, etc.)
+		- Consists of two related keys
+			- public key: can be made public
+			- private key: must be kept secret by the owner/user
 
 
-# Week 8 Lecture 1
+# Week 8 Lecture 1 - Network Layer
 
 
-# Week 8 Lecture 2
+# Week 8 Lecture 2 - Network Layer
 
 
-# Week 9 Lecture 1
+# Week 9 Lecture 1 - Network Layer
 
 
-# Week 10 Lecture 1
+
+# Week 9 Lecture 2 - Link Layer - MAC(Medium Access Control)
+- **Wireless Communication**
+	- Wireless uses radio waves to communicate
 
 
-# Week 10 Lecture 2
+
+# Week 10 Lecture 1 - Link Layer - Ethernet and WiFi
 
 
-# Week 11 Lecture 1
+# Week 10 Lecture 2  - Processor Architectures
 
 
-# Week 11 Lecture 2
+# Week 11 Lecture 1 - Memory Hierarchy
 
 
-# Week 12 Lecture 1
+# Week 11 Lecture 2 - Processes and Threads
+
+
+# Week 12 Lecture 1 - Understanding Spectre
+
+
+# Week 12 Lecture 2 - Revision
