@@ -96,7 +96,7 @@
 			![URL Example](Image/URL_example.png)
 		- Web browsers implement the client side of HTTP while the web servers implement the server side of HTTP
 		- Most web pages include a base html file and several referenced objects
-- **Two types of connections**
+- **Two types of connections of TCP**
 	- Non-persistent connection: Each request and response pair is sent over a separate TCP connection
 		- For each objects, it requires **two** "round trip time"(One to *initiates the TCP connection* and one for *HTTP request*) plus the *file transmission time*
 		- For each TCP connection, it causes OS *overhead* because TCP buffers must be allocated and the TCP variables must be kept in both client and server
@@ -255,7 +255,7 @@
 			- SVN
 			- Perforce
 	- Distributed Version Control Systems(DVCS)
-		- Clients don't just check out the latest snapshot of the files; rather, they fully mirror the repository, including the its full history
+		- Clients don't just check out the latest snapshot of the files; rather, they fully mirror the repository, including its full history
 			- Git
 			- Mercurial
 			- Bazaar
@@ -281,7 +281,7 @@
 
 ## Week 3 Lecture 1 - Transport Layer
 - **Transport-Layer Services**
-	- An application protocol passes the message to the transport layer via sockets
+	- An application-layer protocol passes the message to the transport layer via sockets
 	- A transport-layer protocol provides for logic communication between application processes running on different hosts
 	- The transport layer passes the segment to the network layer at the sending end system
 - **The relation between Transport Layer and Network Layer**
@@ -369,7 +369,7 @@
 - **Over a Channel with Bit Errors: rdt 2.1**
 	- Since the ACK/NAK could also corrupt. The question is how the protocol should handle the errors in ACK/NAK
 		- The sender resends the current data packet when it receives the garbled ACK or NAK packet
-			- Issue: The receiver cannot know the a priori whether the arriving packet contains new data or is a retransmission
+			- Issue: The receiver cannot know the priori whether the arriving packet contains new data or is a retransmission
 			- Solution: Add a new field called sequence number in the data packet. In a stop-and-wait protocol, a 1-bit sequence number will suffice. Specifically, the sender alternates the 1-bit sequence number between 0 and 1 for every new data packet
 		![rdt2.1 picture1](Image/rdt2.1_pic1.png)
 		![rdt2.1 picture2](Image/rdt2.1_pic2.png)
