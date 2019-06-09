@@ -492,7 +492,7 @@
 
 
 
-# Week 5 Lecture 1 - Transport Layer
+# Week 5 Lecture 1 & 2 - Transport Layer
 - **Exercise**
 ![TCP Exercise](Image/TCP_exercise.png)
 - **Timer in TCP**
@@ -517,6 +517,7 @@
 				- Resend the segment y
 				- Reset the counter of segment y to 0
 	- In other words, then the sender receives four ACK for a segment y (one original ACK and three duplicate ACK's), the sender resend the segment y before timeout
+	![Fast Retransmission](Image/fast_retransmission.png)
 - **TCP Flow Control**
 	- TCP provides a flow-control service to its applications to eliminate the possibility of the sender overflowing the receiver's buffer
 	- The basic idea is to let the sender know how much free buffer space is available at the receiver
@@ -578,13 +579,12 @@
 
 
 
-# Week 5 Lecture 2 - Transport Layer
-
-
 # Week 6 Lecture 1 First Half Revision
+- **No new content**
 
 
 # Week 6 Lecture 2 Mid-Sem Test
+- **No content**
 
 
 # Week 7 Lecture 1 & 2 - TLS & Cryptography
