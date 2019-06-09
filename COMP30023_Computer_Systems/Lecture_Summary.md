@@ -558,7 +558,7 @@
 			- For each ACK for a not-yet-acknowledged segment:
 				- cwnd = cwnd + 1MSS
 				- if cwnd == ssthresh (slow-start threshold)
-					- Run the Congestion Avoidance algorithm
+					- Run the *Congestion Avoidance algorithm*
 				- Round 1: cwnd = 1 MSS, increase by 1 MSS
 				- Round 2: cwnd = 2 MSS, increase by 2 MSS
 				- Round 3: cwnd = 4 MSS, increase by 4 MSS
@@ -570,11 +570,11 @@
 			- If a fast transmission event occurs
 				- ssthresh = cwnd / 2
 				- cwnd = ssthresh + 3 MSS
-				- Run the Fast Recovery algorithm
+				- Run the *Fast Recovery algorithm*
 	- **Congestion Avoidance**
-		-
+		![Congestion Avoidance](Image/congestion_avoidance.png)
 	- **Fast Recovery**
-		-
+		![Fast Recovery](Image/fast_recovery.png)
 
 
 
