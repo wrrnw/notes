@@ -656,10 +656,83 @@
 			- private key: must be kept secret by the owner/user
 
 
+#  Week 8 Tutorial
+#### 1. What is the difference between a symmetric-key cryptography system and a public-key system?
+**My anwser**: The symmetric-key cryptography system uses the same key for both encryption and decryption. The public-key system uses one key for encryption and another key for decryption.
+
+#### 2. Suppose N people want to communicate with each of N - 1 other people using symmetric key encryption. All communication between any two people, *i* and *j*, is invisible to all other people in this group of N, and no other person in this group should be able to decode their communication. How many keys are required in the system as a whole? Now suppose that public key encryption is used. How many keys are required inthis case?
+**My answer**: Since symmetric key encryption only need one key for a pair of persons, total number of keys needed is (N-1) + (N-2) + ... + 1, which is equal to N * (N - 1) / 2. If it turns to public key encryption, there are two keys needed for each pair of persons. Therefore the total number of keys is twice the previous number for symmetric encryption, that is, N * (N -1).
+**Solution**: *If each user wants to communicate with N other users, then each pair of users must have a shared symmetric key. There are N * (N-1) / 2 such pairs and thus there are N * (N -1) / 2 keys. With a public key system, each user has a public key which is known to all, and a private key (which is secret and only known by the user). There are thus 2N keys in the public key system.*
+
+#### 3. Is AES an asymmetric or symmetric cryptography algorithm? What does that mean? Why is AES less suitable for digital signatures than RSA?
+**My answer**: AES is a symmetric cryptography algorithm. It stands for "Advanced Encryption Standards". Digital signatures typically does not need to encrypt large amount data. AES breaks data into blocks and encrypts each block which is slower than asymmetric way of encryption.
+**Solution**: *Symmetric. That means that the same key is used for encryption and decryption. Since AES is symmetric, the key to sign is the same as the key to verify; anyone who has the key to verify the signature also has the key to forge the signature*
+
+#### 4. Why is asymmetric key cryptography not often used to encrypt actual messages? Describe how asymmetric key cryptography is commonly used in combination with symmetric key cryptography to encrypt messages.
+**My answer**: Since actual message is usually quite large and asymmetruc encryption is not quite suitable for encrypting large amounts of data or even multiple blocks.
+Usage: Alice generates her key pair (PublicKey, PrivateKey). Alice publish her PrivateKey on the internet. Bob generates a SecretKey. Bob encrypts SecretKey using Alice's PublicKey encrypts(PublicKey, SecretKey) -> Cipher Text. Bob sends Cipher Text to Alice through internet. Alice receives Cipher Text and decrypts it using her own PrivateKey decrypt(PrivateKey, Cipher Text) -> SecretKey. Now they share the same SecretKey and can exchange massage using symmetric cryptography.
+**Solution**: *Asymmetric cryptography is slower than symmetric. It is often not suitable for encrypting large amounts of data or even multiple blocks. You can generally only encrypt data up to the size of the key.
+Asymmetric cryptography is often used as a way of exchaging a joint secret key to be used with symmetric cryptography to encrypt actual messages.*
+
+#### 5. What is a digital certificcate?
+**My answer**: Digital certificate is digitally signed documents that provides proof of identity and ownership. The signer is Certificate Authority(CA) pre-trusted by your browser or OS.
+
+#### 6. Suppose certifier.com creates a certificate for foo.com. Typically, the entire certificate would be encrypted with certifier.com's public key. True or False?
+**Solution**:  *False. To create the certificate, certifier.com would include a digital signature, which is a hash of foo.com's information (including its public key), and signed with certifier.com's private key.*
+
+#### 7. The DIffie-Hellman key exchange is being used to establish a secret key between Alice and Bob. Alice sends Bob (*p = 227, g = 5, Ta = g^x = 82*), Bob responds with (125). Alice's secret number, *x*, is 12, and Bob's secret number, *y*, is 3. Show how Alice and Bob compute the secret key.
+**My answer**:
+Alice:
+A = g ^ x mod p = 5 ^ 12 mod 227 = 82
+SecretKey = B ^ x mod p = 125 ^ 12 mod 227  = 212
+Bob:
+B = g ^ y mod p = 5 ^ 3 mod 227 = 125
+SecretKey = A ^ y mod p = 82 ^ 3 mod 227 = 212
+
+#### 8. To be added
+
+#### 9.  To be added
+
+#### 10. To be added
+
+#### 11. To be added
+
+#### 12. Describe the TLS Handshake process
+**Solution**: *
+(a) TCP connection is established
+(b) Client sends ClientHello to server asking for secure connection, listing its supported cipher suites
+(c) Server responds with ServerHello and selects one of the cipher suites presented that it supports, also includes its certificate, and can request the client send its certificate (mutual authentication)
+(d) Client confirms validity of certificate
+(e) Client generates session key
+Either directly by picking a random key and encrypting it with the public key of the server, or By running the Diffie-Hellman Key Exchange protocol that provides better security*
+(f) Handshake concludes and both parties share a key that is then used for encrypting/decrypting massages
+
+#### 13. To be added
+
+#### 14. To be added
+
+#### 15. To be added
+
 # Week 8 Lecture 1 - Network Layer
 
 
 # Week 8 Lecture 2 - Network Layer
+
+
+# Week 9 Tutorial
+#### 1. Do routers have IP addresses? If so, how many?
+
+#### 2. Two hosts have IP addresses 192.200.20.5 and 192.200.100.5 (a) If each is on a /24 network, are they on the same network? (b) If each is on a /20 network, are they on the same network? (c) If each is on a /17 network, are they on the same network? (d) If each is on a /14 network, are they on the same network?
+My answer: Firstly, translate those two IP addresses into 32 bits binary formats
+192.200.020.5 = 110000000 11001000 00010100 00000101
+192.200.100.5 = 110000000 11001000 01100100 00000101
+Now it's quite clear that the first 17 bits of the two IP addresses are the same. so for any number after / less than or equal to 17, they could be in the same network.
+(a) No (b) No (c) Yes (d) Yes
+
+#### 3. Datagram networks route each packet as a seperate unit, independent of all others. Vitual-circuit networks do not have to do this, since each data packet follows a predetermined route. Does this observation mean that virtual-circuit networks do not need the capability to route isolated packets from an arbitrary destination? Explain your answer.
+My answer:
+
+#### 4.
 
 
 # Week 9 Lecture 1 - Network Layer
@@ -714,11 +787,18 @@
 	- Wireless uses radio waves to communicate
 
 
+# Week 10 Tutorial
+#### 1. Consider sending a 1500-byte datagram into a link that has an MTU(Maximum Transimission Unit) of 500 bytes. Suppose the original datagram is stamped with the identification number 1. Assume that IPv4 is used. Hint: The IPv4 header is 20 bytes long. (a) Where does fragmentation happen? Where are the fragments reassembled? (b) How many fragments are generated? (c) In addition to the identification number, what are the fields in the generated IP datagram(s) that are related to fragmentation? (d) What are the values of the fragmentation-related fileds in the generated IP datagram(s)?
+
 
 # Week 10 Lecture 1 - Link Layer - Ethernet and WiFi
 
 
 # Week 10 Lecture 2  - Processor Architectures
+
+
+# Week 11 Tutorial
+
 
 
 # Week 11 Lecture 1 - Memory Hierarchy
