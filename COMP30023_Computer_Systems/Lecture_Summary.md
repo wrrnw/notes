@@ -663,6 +663,49 @@
 
 
 # Week 9 Lecture 1 - Network Layer
+- **Network Address Translation(NAT)**
+	- Background: IP address scarcity
+		- As IP addresses become scarce, methods for handling many more clients were developed
+		- Whilst IPv6 would solve the problem a stop gap was needed
+		- Private Addresses
+			- Many hosts in a company only need internal access
+			- "Private" subnets 192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8
+			- Can be reused: unique address within organization, not globally
+		- Intention: "Application-layer proxies" to access outside services
+	- Network Address Translation(NAT)
+		- Each customer/home is assigned one public IP address
+			- Business might be issued a few
+		- Internal hosts/interface are issued private IP addresses
+			- Recall 10.0.0.0 to 10.255.255.255/8 (example)
+		- Internal IP addresses are used for communicating amongst hosts in the Local Area Network(LAN)
+		- They must never be used on the public network
+		- When a packet is heading out of the network (to ISP), the internal address is translated to public IP address
+		![NAT illustration](Image/nat.png)
+	- How NAT works
+		- Assumes TCP/UDP, in particular the location of the source and destination port fields
+		- NAT box replaces TCP source address (10.x.y.z) with public IP address
+		- TCP source port replaced with index of entry in NAT translation table
+			- One of 65,536 entries(16 bits - same as TCP port fields)
+			- Each entry contains original IP address (private IP) and original source port number
+		- IP and TCP checksums are recalculated
+		- When a packet arrives from the internet at the NAT box it looks up the destination port from the TCP header in the translation table
+			- Retrieves original source port and source IP address, updates header and checksums and sends to the internal host
+	- Criticisms of NAT
+		- Breaks end-to-end connectivity: an interface in the private network can only receive packets once it has sent packets out and created a mapping
+		- Violates layer model by assuming nature of payload contents - initially only worked for TCP and UDP
+		- Violates IP architecture that says every interface on the internet has an unique IP address (millions of interfaces connecting to the internet has 10.0.0.1)
+		- Change internet from connectionless to pseudo-connection-oriented
+			- NAT maintains connection states, if it crashes all connections are lost
+		- Causes problems with FTP and other protocols that use multiple connections in a prescribed way
+		- Limits number of outgoing connection
+	- Advantages of NAT
+		- Despite criticism, it is widely deployed, particularly in homes and small businesses
+		- Significant security advantages
+			- Since packets can only be received once an outgoing connection has been created, the internal network is greatly shielded from attacks from incoming unsolicited packets
+			- NAT should not replace firewalls
+		- Likely to remain in use even after IPv6 is widely deployed and there is no longer scarcity of IP addresses
+	- Fragmentation
+		-
 
 
 
