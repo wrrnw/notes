@@ -698,14 +698,14 @@ SecretKey = A ^ y mod p = 82 ^ 3 mod 227 = 212
 #### 11. To be added
 
 #### 12. Describe the TLS Handshake process
-**Solution**: *
-(a) TCP connection is established
+**Solution**:
+*(a) TCP connection is established
 (b) Client sends ClientHello to server asking for secure connection, listing its supported cipher suites
 (c) Server responds with ServerHello and selects one of the cipher suites presented that it supports, also includes its certificate, and can request the client send its certificate (mutual authentication)
 (d) Client confirms validity of certificate
 (e) Client generates session key
-Either directly by picking a random key and encrypting it with the public key of the server, or By running the Diffie-Hellman Key Exchange protocol that provides better security*
-(f) Handshake concludes and both parties share a key that is then used for encrypting/decrypting massages
+Either directly by picking a random key and encrypting it with the public key of the server, or By running the Diffie-Hellman Key Exchange protocol that provides better security
+(f) Handshake concludes and both parties share a key that is then used for encrypting/decrypting massages*
 
 #### 13. To be added
 
@@ -713,7 +713,161 @@ Either directly by picking a random key and encrypting it with the public key of
 
 #### 15. To be added
 
-# Week 8 Lecture 1 - Network Layer
+# Week 8 Lecture 1 - Network Layer - IP Addresses and Packet Switching
+- **Internet(Network) Layer**
+	- Role: get data from the source all the way to the destination
+		- May not be in a single hop (point-to-point link)
+	- Traffic must be routed efficiently
+		- This is performed by the network devices called routers
+	- Nodes must be given names (addresses)
+	- "Internet" is a network of networks
+		- "Internet Layer" is a sublayer at the top of the network layer
+	- In an internet, the source and destination may be in different networks. A "hop" is a whole network
+	- Most Internet Layer code runs on the routers, not end hosts
+- **What services does the Internet/Network Layer provide?**
+	- Connectionless
+		- Packet switching (Internet Protocol - IP)
+		- Minimum required service: "send packet"
+		- Called a "datagram network"
+	- Connection-oriented
+		- Circuit Switching
+			- Asynchronous Transfer Mode - ATM
+			- MultiProtocol Label Switching - MPLS
+		- "send packet" and "Establish connection", "tear down connection"
+		- Called a "virtual circuit network"
+- **Store-and-Forward Packet Switching**
+	- The internet is a packet switched network
+	- Host H1 wants to send packet to H2
+		1. Transmits it to the nearest router (A)
+		2. The packet is buffered while it is arriving, and the checksum is verified
+		3. If valid, the packet is stored until the outgoing interface is free
+		4. The router forwards the packet onto the next router in the path
+		5. Repeat 2-4
+- **Comparison of Network Layer Connection-oriented and Connectionless**
+	- Type
+		- Datagram Network: Connectionless
+		- Virtual Circuit: Connection-oriented
+	- Addressing
+		- Datagram Network: Each packet has full source and destination
+		- Virtual Circuit: Each packet contain a short VC number
+	- State:
+		- Datagram Network: Routers need not hold state information about connections
+		- Virtual Circuit: Each VC requires router table space per connection
+	- Routing:
+		- Datagram Network: Each packet independently
+		- Virtual Circuit: Defined at set-up
+	- Quality of Service:
+		- Datagram Network: Difficult
+		- Virtual Circuit: Easy if enough resources
+	- Congestion Control:
+		- Datagram Network: Difficult
+		- Virtual Circuit: /easy if enough resources
+- **MultiProtocol Label Switching(MPLS)**
+	- Widely deployed Virtual Circuit (Connection-oriented) Network Layer Protocol
+		- MPLS network is one IP hop
+	- Primary purpose is Quality of Service
+		- Prioritising traffic
+		- Service Level Agreements for network performance
+		- Reliable connectivity with known parameters
+	- Popular with businesses that want to connect multiple sites and phone companies carrying voice traffic
+	- Expensive: Price roughly 20-100 times more per Mbps than a standard internet connection. (Cost is much more similar.)
+- **Quality of Service(QoS)**
+	- Why is it important?
+		- Not all services are equally important or robust to network delay
+			- VoIP vs file downloads
+			- VPN connections vs web browsing
+	- Within your own network, or within a single administered network (ISP), services can be prioritised
+		- Own network - typically explicitly
+		- Shared network - typically implicitly (ISP traffic shaping)
+	- In the case of explicit prioritisation, the Differentiated Services header can be used to define classes of traffic
+	- Useful in an office building with a network that carries both internet and telephony traffic
+- **Internet Protocol(IP)**
+	- Designed with a number of principles in mind, including:
+		- Something that works OK is better than an ideal standard "in progress"
+		- Keep it simple - Occam's Razor
+		- Be strict when sending and tolerant when receiving
+			- E.g., web browsers handle pages with invalid HTML
+		- Make clear choices - don't have different approaches in a standard
+		- Avoid static options and parameters - negotiate them at runtime
+		- Think about scalability
+	- "Best effort", not guaranteed performance
+- **IP Version 4 Protocol(IPv4) Header**
+	- Header is 20 bytes plus options
+	- Version: Protocol version 4 (This field is also in IPv6)
+	- IHL: Header length in 32 bit words; min 5, max 15
+	- Differentiated services: 6 bits for service class, 2 bits for congestion control (ECN)
+	- Total length: Including payload, max 65,535
+	- Identification, DF, MF, Fragment Offset: Used for "fragmenting" packets too long for a link layer protocol
+	- Time to live: Countdown of hops; at zero, packet is discarded
+	- Protocol: Transport layer service (TCP/UDP/SCTP/DCCP/etc.)
+	- Source and Destination: IPv4 address; 8.8.8.8
+	- Options: Rarely used and poorly supported
+- **IPv4 addresses**
+	- 32-bit number
+	- Expressed in decimal notation, each byte is shown as a decimal, separated by a period, 172.22.44.10(AC162C01)
+	- 0.0.0.0 is lowest, 255.255.255.255 is highest
+	- Overall IP allocation responsibility of Internet Corporation for Assigned Names and Numbers(ICANN) by delegation to IANA and Regional Internet registries(RIR's)
+	- IP addresses name interfaces not hosts, i.e. a host with multiple network acards will have multiple IP addresses
+	- Supply of IPv4 addresses has basically been exhausted
+- **Types of address**
+	- Unicast: One destination ("normal" address)
+	- Broadcast: Send to everyone
+	- Multicast: Send to a particular set of nodes
+		- Used for streaming video of live events
+	- Anycast: Send to any one of a set of addresses
+		- Used for database queries, like DNS, NTP
+	- Geocast: Send to all users in a geographic area
+		- Not widely used
+		- "Location aware" services
+		- Send ad to those in store
+		- Send warning to those near a hazard
+- **IP Addresses - CIDR**
+	- IP with classes
+		- Classes simplify routing
+			- size of "network" field is implicit in the address
+		- Wasteful. Networks often much bigger than needed
+			- Network with 260 nodes must be class B with 16,384 addresses
+	- Classless InterDomain Routing
+		- Each interface / route explicitly specifies which bits are the "network" field
+		- Network with 260 nodes only needs 9 bits for "host" field
+		- 512 addresses
+		- Hierarchical - encodes the network and host number
+			- Network in top bits
+			- Host in bottom bits
+		- Assigned to networks in blocks, the network part will be the same for all hosts on that network
+			- As such, a network corresponds to contiguous block of IP address space, called a prefix
+			- Prefixes are written as the lowest IP address followed by a slash and the size of the network portion - 192.0.2.0/24
+- **IP Addresses - Blocks**
+	- In the case of 192.0.2.0/24
+		- 24 bits are for the network 192.0.2.0
+		- Leaving 8 bits for hosts - up to 256 addresses
+	- In the case of 10.0.0.0/8 (reserved private block)
+		- 8 bits are for the network 10.0.00
+		- Leaving 24 bits for hosts - up to 16,777,216 addresses
+	- Can also be written as a subnet mask, a binary mask of 1's
+		- In the case of /24: the subnet mask is 255.255.255.0
+- **IP Addresses - Prefixing**
+	- Network number = network mask (bitwise-AND) IP address
+	- This is crucial for efficient routing on the internet
+		- Since networks are assigned in blocks, intermediary routers need only maintain routes for the prefixes, not every individual host
+		- Only when the packet arrives at the destination network does the host portion need to be read
+- **IPv6**
+	- Designed over 20 years ago to address the problem of exhausting the IPv4 address space
+	- While solving that problem some other changes were made
+		- Simpler header - allows faster processing
+		- Improved security - now back-ported to IPv4
+		- Further Quality of Service support
+	- IPv6 addresses are 128 bits
+- **IPv6 Header**
+	- Version: 6
+	- Differentiated services: 6 bits for service class, 2 bits for congestion control (ECN)
+	- Flow label: Pseudo-Virtual Circuit identifier
+	- Payload length: Bytes after the 40 byte header
+	- Next header: Type of additional headers, or Protocol number (TCP/UDP)
+	- Hop limit: Same as TTL (Time to Live)
+	- Source and Destination: 16 bytes IPv6 addresses
+- **IPv6 Addressing**
+	- Written as 8 groups of 4 hex digits
 
 
 # Week 8 Lecture 2 - Network Layer
@@ -721,6 +875,8 @@ Either directly by picking a random key and encrypting it with the public key of
 
 # Week 9 Tutorial
 #### 1. Do routers have IP addresses? If so, how many?
+
+
 
 #### 2. Two hosts have IP addresses 192.200.20.5 and 192.200.100.5 (a) If each is on a /24 network, are they on the same network? (b) If each is on a /20 network, are they on the same network? (c) If each is on a /17 network, are they on the same network? (d) If each is on a /14 network, are they on the same network?
 My answer: Firstly, translate those two IP addresses into 32 bits binary formats
