@@ -370,6 +370,31 @@
 		- using one way hash function with salt
 		- adding random records
 	- A reasonably private scheme depends on how much the third party is trusted
+- **A privacy preserving method for data linkage using approximate matching**
+	- Components that are needed
+		1. Computing *approximate similarity* of two record fields (strings)
+		2. Representing a record field (string) in a privacy preserving manner (so that it is difficult to reverse engineer its value)
+		3. Computing approximate similarity of two record fields (strings) that have been represented in privacy preserving manner
+	- Issues
+		- 1.Approximate Similarity
+			![Approximate similarity](Image/Approx_similarity.png)
+			Similarity measure can be easily extended to 3-grams, 4-grams ... (q-grams)
+		- 2.Bloom Filters
+			- bit string: an array of binary digits (bits): 0's and 1's
+			- A bloom filter is an array of I bits, with all bits initially set to zero
+			- We may store strings in the bloom filter by using hash functions H1 ... Hk to turn on certain bits
+				- Each hash function Hi (1 <= i <= k) maps an input string X to a value in the range [0, I-1]
+				- To store a string X in the bloom filter, set array index Hi(X) in the bloom filter to value '1', for each Hi(X)
+			- Checking
+				- For any string X, we can check if it is stored in the bloom filter by hashing X using the k hash functions
+				- If at least one of the bits having value Hi(X) is set to 0, then X is definitely not a member of the bloom filter
+				- If all of the bits having value Hi(X) are set to 1, then X appears to be a member of the bloom filter. However, it might not really be a member (a false positive)
+			- Compare two strings for approximate similarity
+				- There are two strings. The 2-grams of the first string are stored in bloom filter B1, the 2-grams of the second string are stored in bloom filter B2. Both bloom filters are the *same length and use the same hash functions*
+				- If the two strings have a lot of 2-grams in common, then their bloom filters will have a large number of identical bit positions set to 1
+		- 3.Similarity of bloom filters
+			- ![Similarity for bloom filter](Image/bloom_filter_similarity.png)
+			- Need a threshold value for deciding whether match or not
 
 
 
