@@ -447,6 +447,44 @@
 
 
 ## Lecture 22: Differential privacy
+- **Local differential privacy**
+	- Each person is responsible for adding noise to their own data. Classic survey example each person has to answer a question "Do you use drug?"
+		- They flip a coin in secret and answer "Yes" if it comes up heads, but tell the truth otherwise
+		- Plausible deniability about "Yes" answer
+- **Global differential privacy**
+	- We have a sensitive dataset, a trusted data owner Alice and researcher Bob. Alice does analysis on the raw data, adds noise to the answers, and reports the (noisy) answers to Bob
+	- Global systems generally more accurate, and less noise is needed
+	![Differential Privacy](Image/differential_privacy.png)
+	- The privatized analysis comprises two steps
+		- 1.Query the data and obtain the real result, e.g., how many female students are in the survey?
+		- 2.Add random noise to hide the presence/absence of any individual. Release noisy result to the user
+		![Add Random Noise](Image/add_random_noise.png)
+	- The released results will be different each time (different amount of noised added)
+- **The promise of differential privacy**
+	- The chance that the noise released result will be R is nearly the same, whether or not an individual participates in the dataset
+	![Promise](Image/promise_differential_privacy.png)
+- **How much noise should we add to the result depends on**
+	- *Privacy loss budget*: How private we want the result to be (How hard the attacker to guess the true result)
+		- We want that the presence or absence of a user in the dataset does not have a considerable effect on the released result
+		- ![privacy loss budget](!privacy_loss_budget_1.png)
+		- Privacy loss budget = k (k > 0)
+		- Choose k to guarantee that A <= 2^k * B
+			- k = 0: No privacy loss (A = B), low utility
+			- k = high: Large privacy loss, higher utility
+			- k = low: Low privacy loss, lower utility
+	- *Global sensitivity*: How much difference the presence or absence of an individual could make to the result
+		- Global sensitivity of Query Q is the maximum difference in answers that adding or removing any individual from dataset can cause (maximum effect of an individual)
+		- Intuitively, we want to consider the worst case scenario
+		- If asking multiple queries, global sensitivity is equal to the sum of the differences  
+- **Strategy**
+	- Add noise to the according to *released result = True result + noise*
+		- Where noise is a number randomly sampled from a distribution having 	
+			- average value = 0
+			- standard deviation (spread) = G/k
+- **Summary**
+	- Differential privacy guarantees that the presence or absence of a user cannot be revealed after releasing the query result
+		- It does not prevent attackers from drawing conclusions about individuals from aggregate results over the population
+	- We need to determine the budget and global sensitivity to know what is the scale of the noise to be added
 
 
 
@@ -455,3 +493,4 @@
 
 
 ## Lecture 24: Wrap up
+- **No New Content**
