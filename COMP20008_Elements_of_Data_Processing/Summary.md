@@ -315,6 +315,61 @@
 - **Data Linkage**
 	- Combining related/equivalent records across the data source
 		- Information relating to the same entity (e.g. a person or a place) is connected
+- **Pipeline**
+	- Prep
+		- Clean records
+	- Block
+		- Represents complex records as simple values (blocks)
+		- Only score records with simple value (block) in common
+		- Each record from A allocated to one or more blocks
+		- Each record from B allocated to one or more blocks
+		- Within each block, compare the records from A against those from B and find those that match
+		- If two records are not assigned to the same block, it means we believe they are not match
+	- Score
+		- Compare two records: assess their similarity
+		- Score record pairs for similarity
+	- Match
+		- Match "sufficiently match" records  
+	- Merge
+		- Merge matched records
+		- Resolve conflicting attributes
+- **When do we need data linkage privacy**
+	- Matched data is being passed to another organization or being made public; Data matching is conducted across databases from different organizations
+		- How to solve: Without revealing any information about individuals who do not get linked across the databases (i.e., individuals who occur in one database and not in other)
+		- We will need methods for computing similarity of records, without revealing the record values
+			- Hashing is an important tool
+				- A hash function H maps a data item of arbitrary size to a data item of fixed size
+				- Non invertible (One way) hash function: Given the output H(X), extremely hard to reconstruct X.
+			- We can represent numbers using different bases
+- **Hash encoding for exact matching: 2 party protocol**
+	- Each organization
+		- Applies a (one way) hash function to the attributes used to join the databases
+		- Shares its hashed values with the other organization. Each checks which one match. These are linked records.
+	- Disadvantages
+		1. Single character difference results in completely different output
+		2. An organization can mount a dictionary attack to "invert" the hash function
+- **Hash encoding for exact matching: 3 party protocol**
+	- Involve a trusted 3rd party (Organization C)
+	- Organization A and B send their hashed value to Organization C, who then checks for match.
+	- What if Organization C is malicious
+		- Organization C could mount a dictionary attack and guess hashed values
+		- Solution: A and B perform "*dictionary attack resistant*" hashing. Organization A and B concatenate a secret word to every name field in their data before hashing (known as a salt). Organization C does not know what this word is and thus can't perform a dictionary attack to "reverse" the hashed value it received
+	- Frequency Attack
+		- The third party scheme may prevents a dictionary attack, but may still be susceptible to a frequent attack
+		- 3rd party compares the distribution of hashed values to some known distribution
+			- E.g. distribution of surname frequencies in a public database versus distribution of hash values. Then may be able to guess some of the hashed values
+		- Organization A and B could prevent this by adding some random records to manipulate the frequency distribution
+-  **Challenges**
+	1. The hash based technique using the third party, can only compute exact similarity between strings in a privacy preserving manner. What if we wish to compute approximate similarity between two strings in a privacy preserving manner
+	2. Public release: Suppose organizations wish to make one of its internal datasets public for social good purpose. It can be very, very difficult to prevent data linkage attacks or reverse engineering of people's identities
+		Solution: Do not release at all!! or
+		Release an obfuscated version of data (e.g. with noise added to all the records). This is the basis of methods such as *k-anonymity and differential privacy*
+- **Summary for preserving privacy linkage**
+	- Organization A and B can determine which records in the two databases are an exact match in a privacy preserving manner by
+		- using trusted third party C
+		- using one way hash function with salt
+		- adding random records
+	- A reasonably private scheme depends on how much the third party is trusted
 
 
 
