@@ -8,6 +8,8 @@
 	- Why it is useful
 	- Appreciate the series of activities in data wrangling (the data wrangling pipeline)
 
+
+
 ## Lecture 2 & 3 Data Formats
 - **Data formats**
 	- Structured: Relational Database, CSV
@@ -134,6 +136,8 @@
 		- Describes the structure of other data
 		- Easy to validate a JSON document against its schema using a schema validator
 
+
+
 ## Lecture 4 & 5 Data cleaning: missing values and outliers detection & Recommender Systems
 - **Types of outliers**
 	- Global outlier (or point anomaly)
@@ -190,6 +194,8 @@
 		- Online phase.
 			- Predicting rating raj for a given user-item pair as a weighted sum over the k-most similar items that they rated
 
+
+
 ## Lecture 6: Data visualisation
 - **Motivation for data visualisation**
 	- Converting data into a visual formats
@@ -222,30 +228,107 @@
 
 ## Lecture 7: Clustering and clustering visualisation
 
+
+
 ## Lecture 8: Hierarchical clustering and dimension reduction
+
+
 
 ## Lecture 9: Assessing correlations
 
+
+
 ## Lecture 10: Mutual information
 
+
+
 ## Lecture 11: Guest Lecture
+- **Not Examinable**
+
+
 
 ## Lecture 12 & 13: Classification and regression techniques: decision tree and k-nearest neighbor
 
 
+
 ## Lecture 14: No Lecture(Good Friday)
+- **No Content**
+
+
 
 ## Lecture 15 & 16: Blockchain and data processing
+- **Benefits of Blockchain**
+	- No central, trusted point of control
+	- Less administration, less bureaucracy
+	- Less expensive
+	- Faster transactions
+	- More control over records handed to users
+	- Ability to be anonymous
+	- Users can verify data in the blockchain
+	- No single point of failure
+	- More secure solutions
+- **Details**
+	- The public ledger is called the blockchain(a file)
+	- File is a sequence of blocks, each block contains a *header* and some *data* (list of transactions)
+	- Block ID is equal to a hash of its header
+	- Each block contains ID of its parent block
+	- A block header typically includes:
+		- *ID* of its parent block
+		- *Timestamp* of block's creation
+		-  *Hash of the data* (list of transactions) inside a block
+- **How to make information in blockchain private**
+	- Apply hash to the fact then adds this *hash output* to the blockchain along with a digital signature
+		- No on can reverse the hash function to uncover the fact
+		- Now stored on blockchain but privacy is preserved
+	- Alternatively, could *encrypt the fact* using user's public key
+	- Others can *apply hash* to the fact and see what is stored on the blockchain. They can also verify the fact was *digitally signed* by the owner
+- **Blockchain usage in Health**
+	- Patient data is added to the blockchain
+		- Each visit to the doctor
+		- Blood Test
+		- ...
+	- Data is encrypted with patients' public key
+		- Patients may provide private key to insurer or health provider so they can review their medical history. Reduced time, fuller information available and quicker
+- **Blockchain usage in Education**
+	- Cheap, secure, shared resource to store credentials and microcredential
+	- Uses Blockcerts system - software that is built on top of the bitcoin(financial) blockchain, and which allows education credential information to be stored
+	- For university:
+		- Secure
+		- Easy to access
+		- Less expensive
+		- Store micro-credential
+	- For student:
+		- Don't need extra copies
+		- Cheap
+	- Employer:
+		- Doesn't need to talk to university
+		- Trust (security)
+
+
 
 ## Lecture 17: Guest Lecture
+- **Not Examinable**
+
+
 
 ## Lecture 18 & 19 & 20: Data linkage and privacy
+- **Data Linkage**
+	- Combining related/equivalent records across the data source
+		- Information relating to the same entity (e.g. a person or a place) is connected
+
+
+
 
 ## Lecture 21: Public data release and individual anonymity
 
 
+
 ## Lecture 22: Differential privacy
 
+
+
 ## Lecture 23: Ethical consideration
+
+
 
 ## Lecture 24: Wrap up
