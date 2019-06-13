@@ -1,0 +1,25 @@
+# INFO30005 Web Information Technologies Summary
+## Week 1 Lecture 1
+## Week 1 Lecture 2
+## Week 2 Lecture 1
+## Week 2 Lecture 2
+## Week 3 Lecture 1
+## Week 3 Lecture 2
+## Week 4 Lecture 1
+## Week 4 Lecture 2
+## Week 5 Lecture 1
+## Week 5 Lecture 2
+## Week 6 Lecture 1
+## Week 6 Lecture 2
+## Week 7 Lecture 1
+## Week 7 Lecture 2
+## Week 8 Lecture 1
+## Week 8 Lecture 2
+## Week 9 Lecture 1
+## Week 9 Lecture 2
+## Week 10 Lecture 1
+## Week 10 Lecture 2
+## Week 11 Lecture 1
+## Week 11 Lecture 2
+## Week 12 Lecture 1
+## Week 12 Lecture 2
