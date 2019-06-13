@@ -1,4 +1,13 @@
-# COMP30023 Computer Systems Lecture Summary
+# COMP30023 Computer Systems Summary
+
+## Some points
+- Even though the course name is called "Computer Systems", the course mainly focus on computer networks introducing in top-down approach
+- Knowledge intensive
+- Programming part
+	- Project 1 focus on socket programming
+	- Project 2 focus on crack the user passwords(cryptography)
+
+
 ## Week 1 Lecture 1
 - **What is Internet?**
 	- Internet is a network that interconnects with hundreds of millions of computing devices
