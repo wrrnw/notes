@@ -398,9 +398,52 @@
 
 
 
-
 ## Lecture 21: Public data release and individual anonymity
-
+- **Measures of anonymity for individuals**
+	- Removing explicit identifiers from a dataset is not enough
+    - Solutions
+     	- k-anonymity
+       	- I-diversity
+	- Terminology
+		- Explicit Identifier: unique for an individual
+			- name, national ID, Tax File Number, account number
+		- Quasi-identifier: A combination of non sensitive attributes that can be linked with external data to identify an individual
+			- E.g. {Gender, Age, Zip code} combination from earlier
+		- Sensitive attributes: Information that people don't wish to reveal
+			- E.g. Medical condition
+- **k-anonymity**
+	- Produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful
+	- A table satisfies k-anonymity if every record in the table is indistinguishable from at least k-1 other records with respect to every set of quasi-identifier attributes; such a table is called k-anonymous table
+	- Hence, for every combination of values of the quasi-identifiers in the k-anonymous table, there are at least k records that share those values
+	- How to achieve k-anonymity
+		- Generalisation
+			- Make the quasi identifiers less specific
+			- Column level
+		- Suppression
+			- Remove (suppress) the quasi identifiers completely
+			- Moderate the generalization process
+			- Limited number of outliers
+			- Row, column and cell level
+	- If the worst case, if the data gets into wrong hands, can only narrow down a quasi identifier to a group of k individuals
+	- Data publisher needs to
+		- Determines quasi-identifiers
+		- Choose parameter k
+	- Attack on k-anonymity
+		- 1.Homogeneity Attack: k-anonymity can create groups that leak information due to lack of diversity in the sensitive attribute
+		- 2.Background Attack: k-anonymity does not protect against attacks based on background knowledge
+		- Solution: Make the sensitive attribute diverse with each group
+			- I-diversity: For each k anonymous group, there are at least I different sensitive attribute values
+- **Summary**
+	- To reduce risk of re-identification of individuals in released datasets
+		- Choose value of k
+		- Manipulate data to make k-anonymous, either
+			- Replace categories by broader categories
+			- Suppose attributes with a * (limited utility)
+		- Further manipulate data to make it I-diverse
+			- Ensure there are at least l different values of the sensitive attribute in each group
+	- Privacy is difficult to maintain in high-dimensional datasets like trajectory datasets
+		- Cloaking provides spatial k-anonymity
+		- Obfuscation ensures location imprecision
 
 
 ## Lecture 22: Differential privacy
