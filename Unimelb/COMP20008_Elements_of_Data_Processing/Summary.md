@@ -1,4 +1,11 @@
 # COMP20008 Elements of Data Processing Summary
+
+
+## Some points
+- This is a beginning course for Data Science
+- Programming part focus on data wrangling using python
+
+
 ## Lecture 1 Introduction
 - **Data Wrangling**
 	- What is data wrangling
