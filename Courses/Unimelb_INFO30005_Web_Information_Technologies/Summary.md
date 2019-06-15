@@ -108,10 +108,14 @@ describe('Mocha Test', function() {
 ```
  `assert.strictEqual(prod, 2.2);`
  #### **Long Answers Questions**
-- ![Long Answers Question 1](Image/long_answers_question_1.png)
-- ![Long Answers Question 1 Answer](Image/long_answers_question_1_answer.png)
-- ![Long Answers Question 2](Image/long_answers_question_2.png)
-- ![Long Answers Question 2 Answer](Image/long_answers_question_2_answer.png)
+- Question 1
+![Long Answers Question 1](Image/long_answers_question_1.png)
+- Question 1 Answer
+![Long Answers Question 1 Answer](Image/long_answers_question_1_answer.png)
+- Question 2
+![Long Answers Question 2](Image/long_answers_question_2.png)
+- Question 2 Answer
+![Long Answers Question 2 Answer](Image/long_answers_question_2_answer.png)
 
 ## Week 10 Lecture 1 Expanding your Reach (SEO, Accessibility)
 
