@@ -2,6 +2,8 @@
 
 
 ## Some points
+- Version: 2019 Semester 1
+- Lecturer: [James Bailey](https://people.eng.unimelb.edu.au/baileyj/) and [Pauline Lin](https://cis.unimelb.edu.au/people/pauline-lin)
 - This is a beginning course for Data Science
 - Programming part focus on data wrangling using python
 

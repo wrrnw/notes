@@ -2,8 +2,10 @@
 
 
 ## Some points
+- Version: 2019 Semester 1
+- Lecturer: [Eduardo Oliveira](https://www.eduoliveira.com/) and [Ronal Singh](https://cis.unimelb.edu.au/people/rr-singh)
 - Full stack project based course
-- Programming part is not teached in detail
+- Programming part has not been teached in detail, which means you need to find many other resources to learn full stack dev
 
 
 

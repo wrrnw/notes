@@ -1,6 +1,8 @@
 # COMP30023 Computer Systems Summary
 
 ## Some points
+- Version: 2019 Semester 1
+- Lecturer: [Junhao Gan](https://cis.unimelb.edu.au/people/junhao-gan) & [Lachlan Andrew](https://people.eng.unimelb.edu.au/llandrew/)
 - Even though the course name is called "Computer Systems", the course mainly focus on computer networks introducing in top-down approach
 - Knowledge intensive
 - Programming part
