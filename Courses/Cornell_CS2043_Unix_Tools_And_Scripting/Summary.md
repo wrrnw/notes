@@ -1,0 +1,146 @@
+# Cornell CS2043 Unix Tools and Scripting
+
+## Some Points
+- Version: 2019 Spring
+- [Course Website](http://www.cs.cornell.edu/courses/cs2043/2019sp/)
+
+## Lecture 1 Introduction
+- What is Shell?
+	- A really easy programming language
+	- A really verbose dialogue box
+	- Typed commands replace clicked button
+	- Raw User Interface
+- Why do we still need shell?
+	- Scripting and Automation
+	- Very old, very new, or very simple program
+	- low-overhead, no-frills system access
+
+## Lecture 2 SSH & Navigating the Unix File Systems
+### 2.1 SSH
+- Working remotely via SSH
+	- The server you are logging into is called the *remote* (host)
+	- The user you are referred to as the *client*
+	- The remote port us an integer, by default 22
+- Logging into a remote host: the SSH command
+	- `ssh <username>@remote`
+	- *username* is the username on the remote host
+	- *remote* is the url of the server you want to log into
+		- IP address, e.g., 128.253.141.34
+		- Symbolic name, e.g., *wash.cs.cornell.edu*
+	- Use *@* to specify username
+		- `ssh username@remote`
+
+### 2.2 Navigating the Unix File Systems
+- **Notation**
+	- Some-command [opt1] \[opt2] <arg1\> [arg2]
+	- [brackets] indicate optional items (flags / arguments)
+	- <arg1\>: arg1 is required
+	- \[arg2]: command supports multiple arguments
+- **`pwd`** (Print Working Directory)
+	- Prints the "full" path of the current directory
+		- The *-P* flag is needed when symbolic links are present
+	- Handy on minimalist systems when you get lost
+	- Can be used in scripts
+- **`ls`** (List Directory Contents)
+	- Lists directory contents (including subdirectories)
+	- Works like the *dir* command in Windows
+	- The *-l* flag lists detailed file / directory information
+	- Use -a to list hidden files
+- **`cd [directory name]`** (Change Directory)
+	- changes directory to [directory name]
+	- If not given a destination defaults to the user's home directory
+		- Reminder: the home directory is `~`
+- **paths**
+	- A path describes how to access a file
+	- Most paths are relative paths - they start in your current working directory
+	- Simple paths are just file names in the current directory
+		- Example: I'm in ~, which contains course; while I'm in ~ the path course will refer to this directory
+	- A path can traverse directories using the / separator
+		- example: the path `~/course` will always mean the directory course in my home directory, no matter what my current working directory is
+		- example: to get to the directory bar in the directory baz in the directory ~, I could `cd ~/bar/baz`
+- **Relative Path Shortcuts**
+	- **`~`** current user's home directory
+	- **`.`** the current directory
+	- **`..`** the parent directory of the current directory
+	- **`-`** for **cd**, return to previous working directory
+- **The Unix Filesystem**
+	- Unlike Windows, UNIX has a single global "root" directory (instead of a root directory for each disk or volume)
+		- The root directory is just `/`
+	- All files and directories are case sensitive
+		- hello.txt != hEllo.txt
+	- Directories are separated by / in Unix instead of \ in windows
+		- Unix: `/home/mpm288/lemurs`
+		- Windows: `E:\Documents\lemurs`
+	- Absolute paths start with a /, and always refer to the root directory (and never care about the current working directory)
+	- Hidden files and directories begin with a "."
+		- e.g. *`.git/`* (a hidden directory)
+		- e.g. *`..`*(your parent directory)
+	- **`/dev`**: Hardware devices, like your hard drive, USB devices
+	- `/lib`: Stores libraries, along with **`/usr/lib`**, **`/usr/local/lib`**, etc.
+	- **`/mnt`**: Frequently used to mount (access) disk drives
+		- Your second hard drive, for example, instead of E:\, /mnt/better_name_than_E
+	- **`/media`**: For accessing removable storage drivers, like flash drives, CDs, etc
+	- **`/usr`**: Mostly user-installed programs and amenities
+	- **`/etc`**: System-wide settings
+	- **Program Editions**
+		- Programs usually installed in one of the "binaries" directories:
+			- **`/bin`**: System programs
+			- **`/usr/bin`**: System-managed user program
+			- **`/usr/local/bin`**: Manually-installed user program
+	- **Personal Files**
+		- Your personal files are in your home directory (and its subdirectories), which is usually located at
+			- Linux: `/home/username`
+			- Mac: `/Users/username`
+		- There is also a built-in alias for it: `~`
+- **`cat [files]`** (Concatenate files and print them)
+	- Prints ("concatenates") the listed files to your terminal
+	- With no arguments, does something more advanced
+	- Note: if you run *cat* without any arguments and your console is just hanging, hold CTRL and press C to stop program
+- **`touch [flag] <file>`** (Change File Timestamps)
+	- The easiest way to create an empty file
+	- Adjust the timestamp of the specified file
+	- With no flags uses the current date and time
+	- If the file does not exist, touch creates it
+	- File extensions (.txt, .c, .py, etc) often don't matter in Unix
+	- Using *touch* to create a file results in a blank plain-text file, you don't need to add .txt if you don't want to
+- **`mkdir [flags] <dir1> <dir2> <...> <dirN>`** (Make directories)
+	- Can use relative or absolute paths
+		- Not restricted to making directories in the current directory only
+	- Need to specify at least one directory name
+	- Can specify multiple, separated by spaces
+	- The *-p* flag is commonly used in scripts:
+		- Makes all parent directories if they do not exist
+		- Convenient because if the directory exists, *mkdir* will not fail
+- **`rm [flag] <filename>`** (Remove Files or Directories)
+	- Removes the file <filename\>
+	- Remove multiple files with wildcards
+		- Remove every file in the current directory: `rm *`
+		- Remove every .jpg file in the current directory: `rm *.jpg`
+	- Prompt before deletion: rm -i <filename\>
+- **`rmdir [flag] <directory>`** (Remove Directory)
+	- Removes an empty directory
+	- Throws an error if the directory is not empty
+	- You are encouraged to use this command: failing on non-empty can and will save you
+	- To delete a directory and all its subdirectories, we pass em the flag -r (for recursive)
+		- `rm -r /home/mpm288/oldstuff`
+		- This is DANGEROUS!
+- **`cp [flags] <file> <destination>`** (Copy)
+	- Copies from one location to another
+	- To copy multiple files, use wildcards (such as *)
+		- Globs / pattern can only be used fo <src\>
+		- <dest\> must be explicit and singularly defined
+	- To copy a complete directory: `cp -r <src\> <dest\>`
+	- To overwrite more aggressively: `cp -f <src\> <dest\>`
+- **`mv [flag] <source> <destination>`** (Move or Rename Files and Directories)
+	- Unlike the `cp` command, the move command automatically recurses for directories
+	- Moves a file or directory from one place to another
+	- Also used for renaming, rename `<oldname>` to `<newname>`
+		- `mv badFolderName correctName`
+- **Summary**
+	- `ls`: list directory contents
+	- `cd`: change directory
+	- `pwd`: print working directory
+	- `rm`: remove file
+	- `rmdir`: remove directory
+	- `cp`: copy file
+	- `mv`: move file
