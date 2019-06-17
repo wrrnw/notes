@@ -1,7 +1,7 @@
 # INFO30005 Web Information Technologies Summary
 
 
-## Some points
+## Overview
 - Version: 2019 Semester 1
 - Lecturer: [Eduardo Oliveira](https://www.eduoliveira.com/) and [Ronal Singh](https://cis.unimelb.edu.au/people/rr-singh)
 - Full stack project based course
@@ -13,7 +13,44 @@
 
 
 ## Week 1 Lecture 2 History of Web & Introduction to web development (Not Examinable)
-
+- **History**
+	- WWW: World Wide Web
+	- URL: Uniform Resources Locator
+	- HTML: HyperText Markup Language
+	- HTTP: HyperText Transport Protocol
+	- Type of Web Hosts
+		- Self-Service
+		- Co-Located
+		- Dedicated
+		- Virtual Private(VPS)
+		- Cloud
+		- Shared
+		- Managed
+	- ISP: Internet Service Provider
+	- DNS: Domain Name Server
+		- Request Recursive Name Server
+		- Root Name Server
+- **Web Dev**
+	- Web 1.0 - Static Web
+		- Content: Reading content, Personal Site, Content Ownership, Taxonomies
+		- Tech: HTML, HTTP, Synchronous, Client-Server
+	![Web Illustration_1](Image/Web_Illustration_1.png)
+	![Web Illustration_2](Image/Web_Illustration_2.png)
+	- Web 2.0 - Wisdom Site
+		- Web apps that behave like native app
+		- AJAX: Asynchronous JavaScript and XML
+		- Content: Creating Content, Blogs & Profiles, User Content, Folksonomies
+		- Tech: HTML, AJAX, HTTP, JSON, Asynchronous, Peer-to-Peer, REST, SOAP
+		- Front-End
+			- Web Design: Photoshop, Illustrator, Dreamweaver, XD
+			- Front-End Dev: HTML, CSS, JavaScript, Angular
+		- Back-End:
+			- Application: PHP(cake), Ruby(Rails), JS(Node), Python(Django)
+			- Server: Apache, IIS, GWS, Express
+			- Database: MySQL, MongoDB, Oracle, S2Lite
+![Web1.0](Image/Web1.0.png)
+![Web2.0](Image/Web2.0.png)
+![HTML5](Image/HTML5.png)
 
 ## Week 2 Lecture 1 Basic Technologies - Git
 
@@ -36,16 +73,16 @@
 ## Week 5 Lecture 2 Design Principle: Layout, Typography, Colour (Not Examinable)
 
 
-## Week 6 Lecture 1 User Research Design Thinking (Not Examinable)
+## Week 6 Lecture 1 Design Thinking (Not Examinable)
 
 
 ## Week 6 Lecture 2 Usability
 
 
-## Week 7 Lecture 1 Responsive Design and Advanced JavaScript
+## Week 7 Lecture 1 Responsive Design and Advanced JavaScript (Advanced JavaScript Not Examinable)
 
 
-## Week 7 Lecture 2 API Client ES6, Sass, Babel
+## Week 7 Lecture 2 API Client ES6, Sass, Babel (Sass & Babel Not Examinable)
 
 
 ## Week 8 Security and Risk (Security Principles, Risk assessment)
@@ -54,7 +91,7 @@
 ## Week 9 Lecture 1 Testing
 
 
-## Week 9 Lecture 2 Exam Review
+## Week 9 Lecture 2 First Exam Review
 ### **Type of Questions**
  8 - 10 Questions including: Multiple Choice, Short Answers, Long Answers
 ### **Some Example Questions**
@@ -133,5 +170,5 @@ describe('Mocha Test', function() {
 - No New Content
 
 
-## Week 12 Lecture 2 Review
-- No New Content
+## Week 12 Lecture 2 Second Exam Review
+- Go over the sample exam paper
