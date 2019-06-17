@@ -245,6 +245,30 @@ module.exports = router;
 
 
 ## Week 4 Lecture 2 MongoDB & Mongoose
+- **MongoDB**
+	- NoSQL: no transactions; no joins
+	- Create and store objects. Arrange them in collections; Retrieve them later
+	- Data store for JSON objects
+- **MongoDB CRUD**
+	- Create
+		- `db.collection.insert(<document>)`
+		- `db.collection.save(<document>)`
+		- `db.collection.update(<query>, <update>, {upsert: true})`
+	- Read
+		- `db.collection.find(<query>, <projection>)`
+		- `db.collection.findOne(<query>, <projection>)`
+	- Update
+		- `db.collection.update(<query>, <update>, <options>)`
+	- Delete
+		- `db.collection.remove(<query>, <justOne>)`
+- **How to connect our app to MongoDB database**
+	- Use mongoose
+	- `var mongoose = require('mongoose')`
+- **A whole view app**
+	- under construction
+- **Deploy Online**
+	- Use heroku
+
 
 
 ## Week 5 Lecture 1 HTML & CSS
