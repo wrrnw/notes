@@ -223,6 +223,25 @@ module.exports = router;
 
 
 ## Week 4 Lecture 1 API servers and REST
+- **API** (Application Programming Interface)
+![API Illustration](Image/api.png)
+- **REST** (Representational State Transfer)
+	- Regular way the internet works
+	- Is about resources, not about functions
+	- Is stateless
+- **HTTP** (Hypertext Transfer Protocol)
+	- HTTP verbs/methods
+		- *POST* create
+		- *GET* read
+		- *PUT* update
+		- *DELETE* delete
+- **HTTP Request**
+![HTTP Request Example](Image/http_request.png)
+- **HTTP Response**
+![HTTP Response Example](Image/http_response.png)
+- **Restful Routes**
+![Restful Routes Example](Image/restful_routes.png)
+
 
 
 ## Week 4 Lecture 2 MongoDB & Mongoose
