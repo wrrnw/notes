@@ -96,6 +96,130 @@
 
 
 ## Week 3 Node & Express
+- What is **Node**?
+	- Node.js is a JavaScript **runtime** built on Chrome's V8 JavaScript engine. Node.js uses an **event-driven**, **non-blocking I/O** model that makes it **lightweight** and **efficient**. Node.js package ecosystem, npm, is the largest ecosystem of open source libraries in the world
+- What is Node good for?
+	- I/O Bound Application
+	- JSON APIs
+	- Big Data
+	- Single-Page Applications
+- Advantages of Node
+	- Npm
+	- Use JavaScript
+	- Great Libraries
+	- High-performance
+	- Open source
+	- Great for apis
+	- Asynchronous
+	- Great Community
+	- Great for realtime apps
+	- Great for command line utilities
+- Npm (Node Package Manager)
+	- Package manager for JS
+	- Public registry
+	- Centralised
+	- Accessible via the cmd
+	- Easy to share code
+	- `npm install <package>`
+	- `var <varname> = require("package");`
+	- `npm init`
+	- answer questions
+	- check *package.json*
+- Modularising Your Code
+``` js
+module.export = {
+	key : value
+}
+```
+``` js
+const library = require('./library.js');
+let value = libirary.key;
+```
+- Core Packages
+	- *fs*: file system
+	- *net*: TCP client and servers
+	- *http* and *https*: basic web server
+	- *dns*: domain name resolution
+	- *assert*: writing tests
+	- *os*: querying the operating system
+- Express
+	- Streamlined Node
+	- Server methods
+	- Routing
+	- Easy APIs
+	- Middleware friendly
+- First Express App
+	- Create dir and app.js
+	- Install express: `npm install express --save`
+	- Require express
+	- `var app = express();`
+	- Create routes:
+		- `/: print Hello World!`
+		- `/bye: print Goodbye World!`
+	- Listen on a port
+``` js
+const express = require('express');
+const app = express();
+
+app.get('/', function(req, res) {
+	res.send("Hello World");
+});
+
+app.get('/bye', function(req, res) {
+	res.send("Goodbye world");
+});
+
+app.listen(3000, function() {
+	console.log('Express serving at port 3000');
+});
+```
+- Routes
+	- `/` Just the URL
+	- `*` catch all
+	- `/:pattern` catches URLs that match the pattern
+		- e.g. `/post/:id`
+		- `www.blog.com/post/123123` matches
+		- `www.blog.com/123123` does not match
+		- id can be retrieved: `req.params.id`
+- Organising Node Project
+	- package.json
+	- public/
+	- node_modules/
+	- app.js
+	- models/
+	- views/
+	- controllers/
+	- routes/
+	- middleware/
+- Create controller/controller.js
+``` js
+const posts = require('../models/posts');
+
+module.exports.fetchMainPage = function(req, res) {
+	res.send("Welcome to my Blog!");
+};
+
+module.exports.fetchAllPosts = fucntion(req, res) {
+	res.send(posts);
+};
+
+module.exports.fetchPost = function(req, res) {
+	const post = posts[req.params.id];
+	res.render('post_template', {post:post});
+};
+```
+- Create routes/routes.js
+``` js
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/controllers');
+
+router.get('/', controller.fetchMainPage);
+router.get('/posts', controllers.fetchAllPosts);
+router.get('/posts/:id', controllers.fetchPost);
+module.exports = router;
+```
+
 
 
 ## Week 4 Lecture 1 API servers and REST
