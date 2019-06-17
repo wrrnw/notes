@@ -34,8 +34,8 @@
 	- Web 1.0 - Static Web
 		- Content: Reading content, Personal Site, Content Ownership, Taxonomies
 		- Tech: HTML, HTTP, Synchronous, Client-Server
-	![Web Illustration_1](Image/Web_Illustration_1.png)
-	![Web Illustration_2](Image/Web_Illustration_2.png)
+	![Web Illustration_1](Image/Web_illustration_1.png)
+	![Web Illustration_2](Image/Web_illustration_2.png)
 	- Web 2.0 - Wisdom Site
 		- Web apps that behave like native app
 		- AJAX: Asynchronous JavaScript and XML
@@ -52,8 +52,45 @@
 ![Web2.0](Image/Web2.0.png)
 ![HTML5](Image/HTML5.png)
 
-## Week 2 Lecture 1 Basic Technologies - Git
 
+## Week 2 Lecture 1 Basic Technologies - Git
+- Why use version control
+	- Compare Files
+	- Identify Differences
+	- Merge Changes
+	- Revert to previous working code
+	- Snapshot
+- Commands
+	- `git init`: creates the repo
+	- `git clone`: clones a remote repo
+	- `git status`: status of repo
+	- `git add <file>`: add file to staging area
+	- `git add -A`: add all to staging area
+	- `git checkout -- <file>`: undo uncommitted changes
+	- `git add *.<extension>`: add all with extension to staging area
+	- `git commit -m "<message>"`: commit changes to repo
+	- `git log`: show commit history
+	- `git checkout <commit_id>`: move head to that commit
+	- `git revert --no-commit <id>..HEAD`
+	- `git commit` revert to that commit
+	- `git diff` compares with last commit
+- `pull` and `push`
+	- `pull`: to synchronize all of changes in the server to my local machine
+	- `push`: put all of the local changes to the server
+- Branches
+	- `git branch`: show branches
+	- `git checkout -b <branch>`: create a new branch
+	- `git merge <branch>`: merges with branch
+	- `git branch -d <branch>`: delete branch
+- Some advises
+	1. Commit often
+	2. Commit related changes together
+	3. Commit completed work
+	4. Branch before you build
+	5. Commit with meaningful message
+	6. Agree on a workflow
+- Atlassian SourceTree
+- .gitignore
 
 ## Week 2 Lecture 2 Basic Technologies - JavaScript
 
