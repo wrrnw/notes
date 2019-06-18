@@ -92,7 +92,40 @@
 - Atlassian SourceTree
 - .gitignore
 
+
 ## Week 2 Lecture 2 Basic Technologies - JavaScript
+### HTML - Structure
+- `<b><\b>` **bold** in HTML4; visual emphasis in HTML5
+- `<i><\i>` *italic* in HTML4; Alternative voice in HTML5
+- `<u><\u>` underline in HTML4; non-textual annotation IN HTML5
+- `<s><\s>` ~~strikethrough~~ in HTML4; Incorrect in HTML5
+- `<em>` Emphasis or stress
+- `<strong>` Importance
+- `<mark>` Relevance
+### CSS - Presentation
+### JavaScript - Behaviour
+- Print to console
+	- `console.log("starting to print")`
+- HTML + JavaScript
+``` html
+<!DOCTYPE html>
+	<html>
+		<body>
+			<h1>A Web Page<\h1>
+			<p id="demo">A paragraph<\p>
+			<button type="button" onclick="myFunction()">Try it<\button>
+			<script>
+				function myFunction() {
+					document.getElementById("demo").innerHTML = "paragraph changed."
+				}
+			<\script>		
+		<\body>
+	<\html>
+```
+- Better to divide into modules
+	- `<script src="myScript.js"><\script>`
+- Variables
+	- a
 
 
 ## Week 3 Node & Express
@@ -142,13 +175,16 @@ let value = libirary.key;
 	- *dns*: domain name resolution
 	- *assert*: writing tests
 	- *os*: querying the operating system
-- Express
+- **Express**
 	- Streamlined Node
 	- Server methods
 	- Routing
 	- Easy APIs
 	- Middleware friendly
-- First Express App
+- **Comparison between Node.js and Express.js**
+	- Node.js is a platform for building server-side event-driven I/O application using JavaScript
+	- Express.js is a framework based on Node.js for building web-application using principles and approaches of Node.js
+- **Express Application Example**
 	- Create dir and app.js
 	- Install express: `npm install express --save`
 	- Require express
@@ -199,7 +235,7 @@ module.exports.fetchMainPage = function(req, res) {
 	res.send("Welcome to my Blog!");
 };
 
-module.exports.fetchAllPosts = fucntion(req, res) {
+module.exports.fetchAllPosts = function(req, res) {
 	res.send(posts);
 };
 
@@ -219,7 +255,15 @@ router.get('/posts', controllers.fetchAllPosts);
 router.get('/posts/:id', controllers.fetchPost);
 module.exports = router;
 ```
-
+- Global vs. Local Installation
+	- Local Installation
+		- If you're installing something that you want to use in your program, using require(whatever'), then install it locally, at the root of your project
+		- `npm root`
+		- `npm list`
+	- Global Installation
+		- If you're installing something that you want to use in your shell, on the command line or something, install it globally, so that its binaries end up in your *PATH* environment variable
+		- `npm root -g`
+		- `npm list -g`
 
 
 ## Week 4 Lecture 1 API servers and REST
@@ -241,7 +285,6 @@ module.exports = router;
 ![HTTP Response Example](Image/http_response.png)
 - **Restful Routes**
 ![Restful Routes Example](Image/restful_routes.png)
-
 
 
 ## Week 4 Lecture 2 MongoDB & Mongoose
@@ -270,9 +313,118 @@ module.exports = router;
 	- Use heroku
 
 
-
 ## Week 5 Lecture 1 HTML & CSS
-
+- Some material have been already covered in Week 2 Lecture 2
+### HTML (Hyper Text Markup Language)
+- `<element>` void element
+- **Image and figure**
+	- `<img src="kofster.jpg" alt="Barista pouring coffee into a glass bottle">`
+	- It is better to separate the description and figure
+``` html
+<figure>
+	<img src="kofster.jpg" alt="Barista pouring coffee into a glass bottle">
+	<figcaption>The Barefoot Coffee Shop</figcaption>
+</figure>
+```
+- **Lists**
+``` html
+<!-- Ordered list -->
+<ol>
+	<li></li>
+	<li></li>
+	<li></li>
+</ol>
+<!-- Unordered list -->
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+```
+- **Description Lists**
+``` html
+<dl>
+	<dt></dt> <!-- term -->
+	<dd></dd> <!-- description -->
+	<dt></dt>
+	<dd></dd>
+</dl>
+```
+- **Generic Elements**
+	- `<div>` block
+	- `<span>` Inline
+- **Identifying Elements**
+	- `<div id="unique_id" class="class1 class2">`
+		- id is unique but class is not
+- **Tables**
+``` html
+<table>
+	<tr>
+		<th>Item</th>
+		<th>Size</th>
+		<th>Price</th>
+	</tr>
+	<tr>
+		<td rowspan="3">Espresso</td>
+		<td>Small</td>
+		<td>$2.50</td>
+	</tr>
+	<tr>
+		<td>Medium</td>
+		<td>$3.00</td>
+	</tr>
+	<tr>
+		<td>Large</td>
+		<td>$3.50</td>
+	</tr>
+</table>
+```
+- **Links**
+	- `a href="http://www.kofster.com">Kofster</a>`
+	- Absolute URLs
+		- `<a href="http://www.kofster.com/home">`
+	- Relative
+		- `<a href="/home">`
+		- `<a href="#tag_id">`
+- **Forms**
+	- `<form action="/myaction" method="post">`
+``` html
+<form action="/myaction" method="post">
+	Username:
+	<input type="text" name="username"><br>
+	Email:
+	<input type="email" name="email"><br>
+	Password:
+	<input type="password" name="psw"><br>
+	<input type="submit">
+</form>
+```
+### CSS (Cascading Style Sheets)
+- Inline
+``` html
+<h1 style="color:blue">Hello!</h1>
+```
+- Internal
+``` html
+<head><style>
+	h1{color:blue}
+</style></head>
+```
+- External File
+``` html
+<head>
+	<link rel="stylesheet" href="styles.css">
+</head>
+```
+- **Selectors**
+![CSS Demonstration 1](Image/css1.png)
+![CSS Demonstration 2](Image/css2.png)
+![CSS Demonstration 3](Image/css3.png)
+![CSS Demonstration 4](Image/css4.png)
+![CSS Demonstration 5](Image/css5.png)
+![CSS Demonstration 6](Image/css6.png)
+![CSS Demonstration 7](Image/css7.png)
+![CSS Demonstration 8](Image/css8.png)
 
 ## Week 5 Lecture 2 Design Principle: Layout, Typography, Colour (Not Examinable)
 
@@ -357,6 +509,7 @@ describe('Mocha Test', function() {
 ![Long Answers Question 2](Image/long_answers_question_2.png)
 - Question 2 Answer
 ![Long Answers Question 2 Answer](Image/long_answers_question_2_answer.png)
+
 
 ## Week 10 Lecture 1 Expanding your Reach (SEO, Accessibility)
 
