@@ -463,7 +463,7 @@ module.exports = router;
 ![Box Model Illustration pic4](box_model4.png)
 ![Box Model Illustration pic5](box_model5.png)
 ![Box Model Illustration pic6](box_model6.png)
-![Box Model Illustration pic7](box_model6.png)
+![Box Model Illustration pic7](box_model7.png)
 
 
 ## Week 6 Lecture 1 Design Thinking (Not Examinable)
