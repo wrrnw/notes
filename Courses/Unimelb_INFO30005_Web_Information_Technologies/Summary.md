@@ -427,6 +427,43 @@ module.exports = router;
 ![CSS Demonstration 8](Image/css8.png)
 
 ## Week 5 Lecture 2 Design Principle: Layout, Typography, Colour (Not Examinable)
+- Top 5 credibility factors
+	1. Design Look
+	2. Information Design & Structure
+	3. Information Focus
+	4. Company Motive
+	5. Usefulness of the information
+
+- Basic Tools of Graphic Design
+	- Colour
+	- Layout
+	- Typography
+
+### Layout in CSS
+- Benefits of Grids
+	- Frameworks & Tools
+	- Clean
+	- Offer structure
+	- Recognisable
+- Rules for using Grids
+	- Use size to determine ordre
+	- Define space with colour
+	- Be generous with whitespace
+	- Think outside the grid
+		- Advantage when we don't use grid: special and trendy
+- Libraries and Frameworks
+	- Bootstrap
+	- CSS Grid
+	- Flexbox
+
+#### Box Model
+![Box Model Illustration pic1](box_model1.png)
+![Box Model Illustration pic2](box_model2.png)
+![Box Model Illustration pic3](box_model3.png)
+![Box Model Illustration pic4](box_model4.png)
+![Box Model Illustration pic5](box_model5.png)
+![Box Model Illustration pic6](box_model6.png)
+![Box Model Illustration pic7](box_model6.png)
 
 
 ## Week 6 Lecture 1 Design Thinking (Not Examinable)
