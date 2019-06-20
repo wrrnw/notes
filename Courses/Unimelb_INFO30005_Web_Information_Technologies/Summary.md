@@ -446,7 +446,7 @@ module.exports = router;
 	- Offer structure
 	- Recognisable
 - Rules for using Grids
-	- Use size to determine ordre
+	- Use size to determine order
 	- Define space with colour
 	- Be generous with whitespace
 	- Think outside the grid
