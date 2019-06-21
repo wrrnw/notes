@@ -524,6 +524,10 @@
 		<meta name="viewport"
 		content="width=device-width, initial-scale=1">
 		```
+	**General Approaches:**
+	1. Add some viewport tags or elements to each of the pages
+	2. Use CSS Grid to organize content
+	3. Choose breakpoint to decide when we reorganize the content using media queries
 - CSS allows elements to overflow their container
 	``` css
 	img, embed, object, video {
@@ -651,6 +655,26 @@
 
 
 ## Week 7 Lecture 2 API Client ES6, Sass, Babel (Sass & Babel Not Examinable)
+- Template Engines for Node
+	- JADE(PUG) with some Code Examples
+	- VASH
+	- EJS
+	- MUSTACHE
+	- DUST.JS
+	- NUNJUCKS
+	- HANDLEBARS
+	- ATPL
+	- HAML
+- What can browser APIs do?
+	- Fetching data (with AJAX - Asynchronous JavaScript And XML)
+	- AJAX use XMLHttpRequest (XHR)
+		- Object whose methods transfer data between a web browser and a web server
+		- Some Code Examples
+- Modern Web Stacks
+	- MEAN - Angular
+	- MERN - React
+
+
 
 
 ## Week 8 Security and Risk (Security Principles, Risk assessment)
