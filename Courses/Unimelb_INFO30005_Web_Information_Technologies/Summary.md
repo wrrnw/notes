@@ -109,18 +109,18 @@
 - HTML + JavaScript
 	``` html
 	<!DOCTYPE html>
-		<html>
-			<body>
-				<h1>A Web Page<\h1>
-				<p id="demo">A paragraph<\p>
-				<button type="button" onclick="myFunction()">Try it<\button>
-				<script>
-					function myFunction() {
-						document.getElementById("demo").innerHTML = "paragraph changed."
-					}
-				<\script>		
-			<\body>
-		<\html>
+	<html>
+		<body>
+			<h1>A Web Page<\h1>
+			<p id="demo">A paragraph<\p>
+			<button type="button" onclick="myFunction()">Try it<\button>
+			<script>
+				function myFunction() {
+					document.getElementById("demo").innerHTML = "paragraph changed."
+				}
+			<\script>		
+		<\body>
+	<\html>
 	```
 - Better to divide into modules
 	- `<script src="myScript.js"><\script>`
@@ -954,15 +954,72 @@
 
 
 ## Week 10 Lecture 1 Expanding your Reach (SEO, Accessibility)
+- How to evaluate a webpage
+	- Content
+	- Links to the page (backlinks)
+	- Code implementation
+	- Authority
+	- And many more features!
+- SEO
+	- Organic Search (64%)
+	- Social Media (2%)
+	- Non-Social Referrals (15%)
+	- Paid Listing (e.g. Google Adwords) (6%)
+	- Direct (12%)
+- Keywords
+	- Specific > Popular
+	- Distribution
+	![Keyword Distribution](Image/Keyword_distribution.png)
+		- Page: Every page in your site
+		- Keywords: Keywords being targeted
+		- URL: URL or the page
+		- <title\>: Title (< 65 chars)
+		- <meta-description\>: Meta description (<160 chars)
+		- <h1\>: H1 Heading
+- URL Optimization
+	- www.kofster.com/cafes/12937452918491827304
+	- e.g. the number in URL is MongoDB id
+	- Change to Useful info about the page: www.kofster.com/cafes/hipster_emporium
+- HTML Tags Optimisation
+	- `<title>` Heading in the SERP
+	- `<meta name="description">` Summary in the SERP
+	- `<h1>` Stick to one per page
+- IMG Optimisation
+	- `<img src="img01.jpg alt="">`
+	-  Change to `<img src="kofster_logo,jpg alt="Kofster Logo">` to combine with surrounding text
+- SEO Tools
+- Microformats
+	- Special syntax to identify types of content
+- Accessibility Tips
+	- Define the Language
+		- `<html dir="ltr" lang="en-AU">`
+	- Use Semantic Tags
+		- `<small>` Legalese (e.g. copyright, T&C)
+		- `<cite>` e.g. Point to source of quote
+		- `<abbr>` Acronyms and abbreviations
+	- Create Hierarchies with Heading Levels
+		- `<h1><h2><h3><h4><h5><h6>`
+	- Markup Links
+		 ``` html
+		 <a href="http://unimelb.edu.au">Unimelb</a>
+		 ```
+		 Change to
+		 ``` html
+		 <a href="http://unimelb.edu.au" title="University of Melbourne Home Page">Unimelb</a>
+		 ```
+
 
 
 ## Week 10 Lecture 2 Localisation & Internationalisation
 
 
+
 ## Week 11 Lecture 1 Future of The Web (Not Examinable)
 
 
+
 ## Week 11 Lecture 2 Web of things (Not Examinable)
+
 
 
 ## Week 12 Lecture 1 Project Showcase
