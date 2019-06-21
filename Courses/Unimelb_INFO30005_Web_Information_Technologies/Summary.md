@@ -107,21 +107,21 @@
 - Print to console
 	- `console.log("starting to print")`
 - HTML + JavaScript
-``` html
-<!DOCTYPE html>
-	<html>
-		<body>
-			<h1>A Web Page<\h1>
-			<p id="demo">A paragraph<\p>
-			<button type="button" onclick="myFunction()">Try it<\button>
-			<script>
-				function myFunction() {
-					document.getElementById("demo").innerHTML = "paragraph changed."
-				}
-			<\script>		
-		<\body>
-	<\html>
-```
+	``` html
+	<!DOCTYPE html>
+		<html>
+			<body>
+				<h1>A Web Page<\h1>
+				<p id="demo">A paragraph<\p>
+				<button type="button" onclick="myFunction()">Try it<\button>
+				<script>
+					function myFunction() {
+						document.getElementById("demo").innerHTML = "paragraph changed."
+					}
+				<\script>		
+			<\body>
+		<\html>
+	```
 - Better to divide into modules
 	- `<script src="myScript.js"><\script>`
 - Variables
@@ -159,15 +159,15 @@
 	- answer questions
 	- check *package.json*
 - Modularising Your Code
-``` js
-module.export = {
-	key : value
-}
-```
-``` js
-const library = require('./library.js');
-let value = libirary.key;
-```
+	``` js
+	module.export = {
+		key : value
+	}
+	```
+	``` js
+	const library = require('./library.js');
+	let value = libirary.key;
+	```
 - Core Packages
 	- *fs*: file system
 	- *net*: TCP client and servers
@@ -193,22 +193,22 @@ let value = libirary.key;
 		- `/: print Hello World!`
 		- `/bye: print Goodbye World!`
 	- Listen on a port
-``` js
-const express = require('express');
-const app = express();
+		``` js
+		const express = require('express');
+		const app = express();
 
-app.get('/', function(req, res) {
-	res.send("Hello World");
-});
+		app.get('/', function(req, res) {
+			res.send("Hello World");
+		});
 
-app.get('/bye', function(req, res) {
-	res.send("Goodbye world");
-});
+		app.get('/bye', function(req, res) {
+			res.send("Goodbye world");
+		});
 
-app.listen(3000, function() {
-	console.log('Express serving at port 3000');
-});
-```
+		app.listen(3000, function() {
+			console.log('Express serving at port 3000');
+		});
+		```
 - Routes
 	- `/` Just the URL
 	- `*` catch all
@@ -228,33 +228,33 @@ app.listen(3000, function() {
 	- routes/
 	- middleware/
 - Create controller/controller.js
-``` js
-const posts = require('../models/posts');
+	``` js
+	const posts = require('../models/posts');
 
-module.exports.fetchMainPage = function(req, res) {
-	res.send("Welcome to my Blog!");
-};
+	module.exports.fetchMainPage = function(req, res) {
+		res.send("Welcome to my Blog!");
+	};
 
-module.exports.fetchAllPosts = function(req, res) {
-	res.send(posts);
-};
+	module.exports.fetchAllPosts = function(req, res) {
+		res.send(posts);
+	};
 
-module.exports.fetchPost = function(req, res) {
-	const post = posts[req.params.id];
-	res.render('post_template', {post:post});
-};
-```
+	module.exports.fetchPost = function(req, res) {
+		const post = posts[req.params.id];
+		res.render('post_template', {post:post});
+	};
+	```
 - Create routes/routes.js
-``` js
-const express = require('express');
-const router = express.Router();
-const controller = require('../controllers/controllers');
+	``` js
+	const express = require('express');
+	const router = express.Router();
+	const controller = require('../controllers/controllers');
 
-router.get('/', controller.fetchMainPage);
-router.get('/posts', controllers.fetchAllPosts);
-router.get('/posts/:id', controllers.fetchPost);
-module.exports = router;
-```
+	router.get('/', controller.fetchMainPage);
+	router.get('/posts', controllers.fetchAllPosts);
+	router.get('/posts/:id', controllers.fetchPost);
+	module.exports = router;
+	```
 - Global vs. Local Installation
 	- Local Installation
 		- If you're installing something that you want to use in your program, using require(whatever'), then install it locally, at the root of your project
@@ -320,36 +320,36 @@ module.exports = router;
 - **Image and figure**
 	- `<img src="kofster.jpg" alt="Barista pouring coffee into a glass bottle">`
 	- It is better to separate the description and figure
-``` html
-<figure>
-	<img src="kofster.jpg" alt="Barista pouring coffee into a glass bottle">
-	<figcaption>The Barefoot Coffee Shop</figcaption>
-</figure>
-```
+	``` html
+	<figure>
+		<img src="kofster.jpg" alt="Barista pouring coffee into a glass bottle">
+		<figcaption>The Barefoot Coffee Shop</figcaption>
+	</figure>
+	```
 - **Lists**
-``` html
-<!-- Ordered list -->
-<ol>
-	<li></li>
-	<li></li>
-	<li></li>
-</ol>
-<!-- Unordered list -->
-<ul>
-	<li></li>
-	<li></li>
-	<li></li>
-</ul>
-```
+	``` html
+	<!-- Ordered list -->
+	<ol>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ol>
+	<!-- Unordered list -->
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	```
 - **Description Lists**
-``` html
-<dl>
-	<dt></dt> <!-- term -->
-	<dd></dd> <!-- description -->
-	<dt></dt>
-	<dd></dd>
-</dl>
-```
+	``` html
+	<dl>
+		<dt></dt> <!-- term -->
+		<dd></dd> <!-- description -->
+		<dt></dt>
+		<dd></dd>
+	</dl>
+	```
 - **Generic Elements**
 	- `<div>` block
 	- `<span>` Inline
@@ -357,28 +357,28 @@ module.exports = router;
 	- `<div id="unique_id" class="class1 class2">`
 		- id is unique but class is not
 - **Tables**
-``` html
-<table>
-	<tr>
-		<th>Item</th>
-		<th>Size</th>
-		<th>Price</th>
-	</tr>
-	<tr>
-		<td rowspan="3">Espresso</td>
-		<td>Small</td>
-		<td>$2.50</td>
-	</tr>
-	<tr>
-		<td>Medium</td>
-		<td>$3.00</td>
-	</tr>
-	<tr>
-		<td>Large</td>
-		<td>$3.50</td>
-	</tr>
-</table>
-```
+	``` html
+	<table>
+		<tr>
+			<th>Item</th>
+			<th>Size</th>
+			<th>Price</th>
+		</tr>
+		<tr>
+			<td rowspan="3">Espresso</td>
+			<td>Small</td>
+			<td>$2.50</td>
+		</tr>
+		<tr>
+			<td>Medium</td>
+			<td>$3.00</td>
+		</tr>
+		<tr>
+			<td>Large</td>
+			<td>$3.50</td>
+		</tr>
+	</table>
+	```
 - **Links**
 	- `a href="http://www.kofster.com">Kofster</a>`
 	- Absolute URLs
@@ -388,34 +388,34 @@ module.exports = router;
 		- `<a href="#tag_id">`
 - **Forms**
 	- `<form action="/myaction" method="post">`
-``` html
-<form action="/myaction" method="post">
-	Username:
-	<input type="text" name="username"><br>
-	Email:
-	<input type="email" name="email"><br>
-	Password:
-	<input type="password" name="psw"><br>
-	<input type="submit">
-</form>
-```
+	``` html
+	<form action="/myaction" method="post">
+		Username:
+		<input type="text" name="username"><br>
+		Email:
+		<input type="email" name="email"><br>
+		Password:
+		<input type="password" name="psw"><br>
+		<input type="submit">
+	</form>
+	```
 ### CSS (Cascading Style Sheets)
 - Inline
-``` html
-<h1 style="color:blue">Hello!</h1>
-```
+	``` html
+	<h1 style="color:blue">Hello!</h1>
+	```
 - Internal
-``` html
-<head><style>
-	h1{color:blue}
-</style></head>
-```
+	``` html
+	<head><style>
+		h1{color:blue}
+	</style></head>
+	```
 - External File
-``` html
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
-```
+	``` html
+	<head>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	```
 - **Selectors**
 ![CSS Demonstration 1](Image/css1.png)
 ![CSS Demonstration 2](Image/css2.png)
@@ -467,12 +467,187 @@ module.exports = router;
 
 
 ## Week 6 Lecture 1 Design Thinking (Not Examinable)
+- How to understand users?
+	- innovation process
+		- Studies and Research: Identify users and investigates how the product can be used and in which circumstances
+		- Ideation: Problems and opportunities identified by research inspires solutions, which is the goal of this phase
+			- Brainstorm every idea that couldn't possibly work
+			- Draw what you want to say
+			- Write with your non-dominant hand
+			- Collaborative fan
+			- Use "dot-voting" to rank the ideas
+			- Persona
+			- Storyboard
+			- mockups
+		- Prototyping
+		- Evaluation
 
 
 ## Week 6 Lecture 2 Usability
+- What is usability?
+	- Usability is a quality attribute that assesses how easy user interfaces are to use
+	- The word "usability" also refers to methods for improving ease-of-use during the design process
+- Usability can be defined by 5 quality components:
+	- *Learnability*: How easy is it for users to accomplish basic tasks the first time they encounter the design?
+	- *Efficiency*: Once users have learned the design, how quickly can they perform tasks?
+	- *Memorability*: When users return to the design after a period of not using it, how easily can they reestablish proficiency
+	- *Error*: How many errors do users make, how severe are these errors, and how easily can they recover from the errors?
+	- *Satisfaction*: How pleasant is it to use the design?
+- Web Usability
+	- First Impressions
+		- Grid, Layout etc.
+	- Information Architecture
+		- Card Sorting
+	- Navigation
+	- Form Design
+		- Keep field to a minimum
+		- Informative and visible labels
+		- Easy to tap fields
+		- Field size matching expected input
+		- Specific error messages
+		- Clearly mark what is optional
+		- No reset! Usability testing
+	- Dark Patterns
+		- Force continuity
+		- Friend spam
+		- Hidden Costs
+		- Trick Questions
 
 
 ## Week 7 Lecture 1 Responsive Design and Advanced JavaScript (Advanced JavaScript Not Examinable)
+- What is responsive design?
+	- Dealing with pixels
+	- Display Resolution != Viewport Size. There is pixel density
+	- DIP: Device-Independent Pixel
+	- DIP = RES (Hardware Resolution) / DPR (Device Pixel Ratio)
+		``` css
+		<meta name="viewport"
+		content="width=device-width, initial-scale=1">
+		```
+- CSS allows elements to overflow their container
+	``` css
+	img, embed, object, video {
+		max-width: 100%;
+	}
+	body {
+		font-size: 100%;
+	}
+	h1 {
+		font-size: 5em;
+	}
+	```
+- Media Queries
+	``` css
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" media="screen and (min-width:500px;)" href="large.css">
+	```
+- Responsive Design Patterns
+	- Column drop
+	- Mostly Fluid
+	- Layout Shifter
+	- Off Canvas
+- How to achieve responsive design pattern?
+	- Using grid
+		``` html
+		<div class="container">
+			<article></article>
+
+			<div class="sidebar">
+				<section>
+					<header></header>
+					<aside></aside>
+				</section>
+				<figure></figure>
+			</div>
+		</div>
+		```
+	- Container
+	- Item
+	- Line
+	- Cell
+	- Track
+	- Area
+	- Gap
+		``` html
+		<div class="page">
+			<header></header>
+			<figure></figure>
+			<article></article>
+			<aside></aside>
+		</div>
+		```
+		``` css
+		.page{
+			display:grid;
+			grid-template-columns: 2fr 1fr 1fr;
+			gird-template-rows: 4em auto;
+		}
+		header {
+			gird-row: 1/2,
+			gird-column: 2/3;
+		}
+		figure {
+			grid-row: 2/3;
+			gird-column: 2/4;
+		}
+		article {
+			grid-row: 1/2;
+			grid-column: 1/3;
+		}
+		aside {
+			grid-row: 1/2;
+			grid-column: 3/4;
+		}
+		```
+- No use of cell numbers
+	``` css
+	.page {
+		display:grid;
+		gird-template-columns: 2fr 1fr 1fr;
+		grid-template-rows: 4em auto;
+		grid-template-areas:
+			"article header aside"
+			"article figure figure";
+	}
+	header {
+		grid-area: header;
+	}
+	figure {
+		grid-area: figure;
+	}
+	article {
+		grid-area: article;
+	}
+	aside {
+		grid-area: aside;
+	}
+	```
+- When design becomes responsive
+	``` css
+	.page {
+		display:grid;
+		gird-template-columns: 2fr 1fr 1fr;
+		grid-template-rows: 4em auto;
+		grid-template-areas:
+			"article header aside"
+			"article figure figure";
+	}
+
+	@media screen and (min-width: 992px) {
+	.page {
+		grid-template-columns: 1fr 3fr;
+		grid-template-rows: 1fr 2fr auto;
+		grid-template-areas:
+			"header header"
+			"figure figure"
+			"aside article";
+		}
+	}
+	```
+- legacy browsers
+	- Serve the mobile version to old browsers
+		- Build the mobile version without grid
+		- Test for grid support with `supports(display:grid)`
 
 
 ## Week 7 Lecture 2 API Client ES6, Sass, Babel (Sass & Babel Not Examinable)
@@ -505,38 +680,38 @@ module.exports = router;
 	- Predictable. We implement functionality to achieve certain tasks. We want to make sure that when we execute a functionality, the outcomes as we intended to be, not only the first time but always
 	- Resilient to changes. That is be able to handle changes to functionality. Over the life of our web application, we will either enhance existing functionality or implement new ones. When we change a functionality, we can re-run all of our tests to ensure that other components (e.g. functions or classes) that may be dependent on the changed components continues to function as we intended
 - Given the following HTML&CSS, what the colour of "Hello"
-``` html
- <html>
-	 <body class="red">
-		 <h1 class="blue">
-			 Hello
-		 </h1>
-	 </body>
- </html>
-```
-``` css
-.blue {
-	color: blue;
-}
-.red {
-	color: red;
-}
-```
+	``` html
+	 <html>
+		 <body class="red">
+			 <h1 class="blue">
+				 Hello
+			 </h1>
+		 </body>
+	 </html>
+	```
+	``` css
+	.blue {
+		color: blue;
+	}
+	.red {
+		color: red;
+	}
+	```
 
 - Use the following incomplete tests to answer the two questions that follow. Write the missing assertion statement for testing the value of the variable *prod*, which is expected to be equal to *2.2*
-``` javascript
-var assert = require('assert');
-describe('Mocha Test', function() {
-	it('checking the product of two numbers', function() {
-		var prod = 1.0 * 2.2;
-		// Missing assertion
+	``` javascript
+	var assert = require('assert');
+	describe('Mocha Test', function() {
+		it('checking the product of two numbers', function() {
+			var prod = 1.0 * 2.2;
+			// Missing assertion
+		});
+		it('check the length of a string', function() {
+			assert.strictEqual("mocha".length, 5);
+		});
 	});
-	it('check the length of a string', function() {
-		assert.strictEqual("mocha".length, 5);
-	});
-});
-```
- `assert.strictEqual(prod, 2.2);`
+	```
+	 `assert.strictEqual(prod, 2.2);`
  #### **Long Answers Questions**
 - Question 1
 ![Long Answers Question 1](Image/long_answers_question_1.png)
