@@ -320,12 +320,12 @@
 - **Image and figure**
 	- `<img src="kofster.jpg" alt="Barista pouring coffee into a glass bottle">`
 	- It is better to separate the description and figure
-	``` html
-	<figure>
-		<img src="kofster.jpg" alt="Barista pouring coffee into a glass bottle">
-		<figcaption>The Barefoot Coffee Shop</figcaption>
-	</figure>
-	```
+		``` html
+		<figure>
+			<img src="kofster.jpg" alt="Barista pouring coffee into a glass bottle">
+			<figcaption>The Barefoot Coffee Shop</figcaption>
+		</figure>
+		```
 - **Lists**
 	``` html
 	<!-- Ordered list -->
@@ -388,17 +388,17 @@
 		- `<a href="#tag_id">`
 - **Forms**
 	- `<form action="/myaction" method="post">`
-	``` html
-	<form action="/myaction" method="post">
-		Username:
-		<input type="text" name="username"><br>
-		Email:
-		<input type="email" name="email"><br>
-		Password:
-		<input type="password" name="psw"><br>
-		<input type="submit">
-	</form>
-	```
+		``` html
+		<form action="/myaction" method="post">
+			Username:
+			<input type="text" name="username"><br>
+			Email:
+			<input type="email" name="email"><br>
+			Password:
+			<input type="password" name="psw"><br>
+			<input type="submit">
+		</form>
+		```
 ### CSS (Cascading Style Sheets)
 - Inline
 	``` html
@@ -685,7 +685,7 @@
 		- Political activists
 		- Professional
 - Hashing + Salt
-![Hashing with salt string](hash&salt.png)
+![Hashing with salt string](Image/hash&salt.png)
 - Social Engineering
 - Security Principles
 	1. Expect The Worst - Focus on prevention instead of reaction
@@ -826,7 +826,7 @@
 			})
 		})
 		```
-	![npm test failed example](Image/npm_test_failed.png)
+		![npm test failed example](Image/npm_test_failed.png)
 	- Implement a new *findSum()*
 		``` js
 		// defined in controllers/sum.js
@@ -844,27 +844,27 @@
 		```
 		![npm test succeed example](Image/npm_test_succeed.png)
 - Mocha - Integration Testing Example
-``` js
-var expect = require('chai').expect;
-var request = require('supertest');
-var app = require('../app');
+	``` js
+	var expect = require('chai').expect;
+	var request = require('supertest');
+	var app = require('../app');
 
-describe('Integration Test Example - Sum functionality', function() {
-	describe('#POST to /calcs/sum with two numbers', function() {
-		it('should get sum of two 1.5 and 2.3 as 3.8', function(done) {
-			request(app)
-				.post('/calcs/sum')
-				.send({num1 : 1.5, num2 : 2.3})
-				.end(function(err, res) {
-					expect(res.statusCode).to.equal(200); //OK
-					// This is only an example. You can use JSON for parsing
-					expect(res.text).to.contains('<p><h1><b>Sum</b> is 3.8</h1></p>');
-				});
+	describe('Integration Test Example - Sum functionality', function() {
+		describe('#POST to /calcs/sum with two numbers', function() {
+			it('should get sum of two 1.5 and 2.3 as 3.8', function(done) {
+				request(app)
+					.post('/calcs/sum')
+					.send({num1 : 1.5, num2 : 2.3})
+					.end(function(err, res) {
+						expect(res.statusCode).to.equal(200); //OK
+						// This is only an example. You can use JSON for parsing
+						expect(res.text).to.contains('<p><h1><b>Sum</b> is 3.8</h1></p>');
+					});
+			});
 		});
 	});
-});
-```
-![Mocha Integration Testing Example](Image/Integration_testing.png)
+	```
+	![Mocha Integration Testing Example](Image/Integration_testing.png)
 - Test Double Types
 	- Spy: Wrapper for a real function
 	- Mock: spy object that pretends to be a real function that can record information , e.g. how many times it's called, etc
