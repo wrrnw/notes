@@ -1009,9 +1009,61 @@
 		 ```
 
 
-
 ## Week 10 Lecture 2 Localisation & Internationalisation
-
+- Localisation: Adaptation to meet the language, cultural, and other requirements of a specific target market.
+- Internationalisation: Design and development that support localisation
+	- Think about: Language, Direction, Units, Local Regulations, Sizing(paper, shoes, clothes), Devices, Browsers, Social Media, Currency, etc.
+- Locale = language + region + preferences
+- Keep Code and Content separate from each other
+- Localisation > Translation
+- Currency Issue
+	- Display price in local currency
+	- Follow local tax regulations
+	- Localise your pricing structure
+- Language Case Example
+	- A directory /locales contains: en_AU.json; en_US.json; fr_FR.json
+	- EN_AU.JSON:
+		``` json
+		{
+			"hello" : "G'Day!"
+		}
+		```
+	- EN_US.JSON:
+		``` json
+		{
+			"hello" : "Good Morning!"
+		}
+		```
+	- FR_FR.JSON
+		``` json
+		{
+			"hello" : "Bonjour!"
+		}
+		```
+- A locale repository stores:
+	- Strings in your code
+	- External text
+	- Text in interface widgets
+	- String context notes
+- Careful when treating text programmatically
+	- Deal with plural issue
+- Fonts
+	- Does it support all chars needed?
+	- Support for right set of chars?
+	- Is it culturally appropriate?
+- Left-to-Right or Right-to-Left
+	- `dir="ltr"` or `dir="rtl"`
+- Different meaning of colours
+- Attention to detail
+- **From the start:**
+	- **Identify your target locales**
+	- **Refactor the code**
+	- **Test for each locale**
+- Localisation Management Software
+	- Content repo
+	- Translation memory
+	- Collaboration tools
+	- Automatic translation
 
 
 ## Week 11 Lecture 1 Future of The Web (Not Examinable)
