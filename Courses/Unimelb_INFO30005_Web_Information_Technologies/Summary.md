@@ -675,12 +675,67 @@
 	- MERN - React
 
 
-
-
 ## Week 8 Security and Risk (Security Principles, Risk assessment)
+- Black Hat and White Hat
+	- Black Hat
+		- Curious users
+		- Thrill seeker
+		- Trophy hunter
+		- Script kiddies
+		- Political activists
+		- Professional
+- Hashing + Salt
+![Hashing with salt string](hash&salt.png)
+- Social Engineering
+- Security Principles
+	1. Expect The Worst - Focus on prevention instead of reaction
+	2. Least Privilege - Minimum necessary to get the job done
+	3. Simple Is More Secure - The more complex the system, the harder it is to secure
+	4. Defense In Depth - Use layered security mechanisms
+	5. No Security In Obscurity - Secrets are hard to keep
+	6. Fail Security - Don't help your hackers
+- Best Practices
+	- Regulate requests
+	- Validate input
+	- Sanitise data
+	- Keep code private
+	- Vague security errors
+- Types of attack
+	- Confidentiality Attacks
+	- Integrity Attacks
+	- Availability Attacks
+	- Authenticity Attacks
+- Risk Assessment
+	- Risk: An undesirable event with the potential to have a negative impact on the project
+	- Trigger: An event that provides noticeable signs for the group that the risk may actually be happening
+	- Likelihood: Chance of the risk occurring, rated on the likely, possible or unlikely
+	- Impact: Extend to which the group will suffer as a result of risk occurring, rated as major, moderate or minor
+	- Contingency Plan: What to do in the event of the risk actually happening
+- Managing Risk
+	- Prevention
+	- Detection
+	- Response
+	- Recovery and Remediation
+- Common Web Attacks
+	- SQL Injection
+		- Solution: Give limited privilege to the user; sanitise the input
+	- URL Manipulation / Rewrite
+		- `http://bank.com/autherise?Id=23482345`
+		- Solution: Even unlinked pages are accessible, don't rely on obscurity as access control
+	- XSS Cross-Site Scripting
+		- Solution: Sanitise anything that gets output to the browser
+	- CSRF (Cross-Site Request Forgery)
+		- Solution: GET requests should be idempotent; Check for POST requests
+	- Cookie Theft
+		- With JavaScript, a cookie can be created like this: `document.cookie = "username=John Doe";`
+		- You can also add an expiry data (in UTC time). By default, the cookie is deleted when the browser is closed: `document.cookie = "username=John Doe; expires="Thu, 18 Dec 2013 12:00:00 UTC";`
+		- With a path parameter, you can tell the browser what path the cookie belongs to. By default, the cookie belongs to the current page. `document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";`
+		- Solution: Assume cookies are visible; Non-sensitive data in cookies; HttpOnly; SSL; Set cookie expiration, domain & path
+
 
 
 ## Week 9 Lecture 1 Testing
+-
 
 
 ## Week 9 Lecture 2 First Exam Review
