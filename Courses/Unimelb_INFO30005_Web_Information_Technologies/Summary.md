@@ -735,7 +735,158 @@
 
 
 ## Week 9 Lecture 1 Testing
--
+- Why testing?
+	- Error Free Code
+	- Predictable
+	- Resilient
+- How to do testing?
+	- Test-driven development(TDD) & Behaviour-driven development(BDD)
+- Basic Test Cycle
+	- Write Tests
+	- Run Tests - Check for fails
+	- Implement Functionality
+	- Refactor
+	- Repeat
+- Frameworks and Tools for Node
+	- Mocha
+	- Chai
+	- Sinon
+	- Istanbul
+- Test Types
+	- Unit
+	- Integration
+	- Functional
+- Getting Started with Mocha
+	- Install: `npm install mocha` `npm install --save-dev mocha`
+	- Use *test* directory to keep things clean
+	- Mocha - Unit Testing Example
+		``` js
+		var assert = require('assert');
+		descrikbe('Mocha Test Example 1', function () {
+			it('checking the sum of two numbers - PASS', function () {
+				var sum = 1 + 2;
+				assert.strictEqual(sum, 3);
+			});
+			it('check the length of a string - FAIL', function () {
+				assert.strictEqual("mocha".length, 6);
+			});
+		});
+		```
+		![Mocha showcase](Image/Mocha_showcase.png)
+- Using Chai Assertion Library
+	- TDD/BDD assertion library
+	- Pair with any JS testing framework
+	- Install: `npm install chai`
+- Mocha-Chai Unit Testing
+	- Testing the *findSum(n1, n2)* function
+		``` js
+		// defined in controllers/sum.js
+		const findSum = function (n1, n2) {
+			return n1 + n2;
+		};
+
+		module.exports = {
+			findSum,
+		};
+		```
+	- Test Cases:
+		1. Test without arguments
+		2. Test with valid arguments
+		3. Test with invalid arguments
+	- Chai Assertion Styles - Three Styles:
+		1. assert - similar to node.js built-in assert
+		2. expect - BDD style
+		3. should - BDD style (requires a function)
+		``` js
+		var sum = require('../controllers/sum');
+		var expect = require('chai').expect;
+
+		describe('#testing the findSum() function', function() {
+
+			context('test without arguments', function() {
+				it('findSum() should throw error', function() {
+					expect(function() {
+						sum.findSum()
+					}).to.throw(TypeError, 'findSum() expects numbers.')
+				})
+			})
+
+			context('test with two arguments', function() {
+				it('findSum(n1, n2) should return sum of n1 and n2', function() {
+					expect(sum.findsum(1, 2)).to.equal(3)
+				})
+			})
+
+			context('test with non-number arguments', function() {
+				it('findSum(?,?) should throw error', function() {
+					expect(function() {
+						sum.findSum('a','b')
+					}).to.throw(typeError, 'findSum() expects numbers.')
+				})
+			})
+		})
+		```
+	![npm test failed example](Image/npm_test_failed.png)
+	- Implement a new *findSum()*
+		``` js
+		// defined in controllers/sum.js
+		const findSum = function (n1, n2) {
+
+			if (isNaN(n1) || isNaN(n2)) {
+				throw new Typeerror('findSum() expects numbers.');
+			}
+			return n1 + n2;
+		};
+
+		module.exports = {
+			findSum,
+		};
+		```
+		![npm test succeed example](Image/npm_test_succeed.png)
+- Mocha - Integration Testing Example
+``` js
+var expect = require('chai').expect;
+var request = require('supertest');
+var app = require('../app');
+
+describe('Integration Test Example - Sum functionality', function() {
+	describe('#POST to /calcs/sum with two numbers', function() {
+		it('should get sum of two 1.5 and 2.3 as 3.8', function(done) {
+			request(app)
+				.post('/calcs/sum')
+				.send({num1 : 1.5, num2 : 2.3})
+				.end(function(err, res) {
+					expect(res.statusCode).to.equal(200); //OK
+					// This is only an example. You can use JSON for parsing
+					expect(res.text).to.contains('<p><h1><b>Sum</b> is 3.8</h1></p>');
+				});
+		});
+	});
+});
+```
+![Mocha Integration Testing Example](Image/Integration_testing.png)
+- Test Double Types
+	- Spy: Wrapper for a real function
+	- Mock: spy object that pretends to be a real function that can record information , e.g. how many times it's called, etc
+	- Stub: is a spy with the real function replaced with behavior you specify
+- Sinon
+	- Library of test doubles
+- Code Coverage
+	- Code quality metric
+	- How much was actually executed during tests
+	- Strive for 100% coverage
+- Istanbul
+	- Library for testing code coverage
+	- Usage:
+		- `npm install -g Istanbul`
+		- `istanbul cober test.js`
+		![Istanbul Coverage Summary](Image/Istanbul_coverage.png)
+- Test Hooks
+	- before
+	- beforeEach
+	- after
+	- afterEach
+
 
 
 ## Week 9 Lecture 2 First Exam Review
