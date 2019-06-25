@@ -584,15 +584,15 @@
 		.page{
 			display:grid;
 			grid-template-columns: 2fr 1fr 1fr;
-			gird-template-rows: 4em auto;
+			grid-template-rows: 4em auto;
 		}
 		header {
-			gird-row: 1/2,
-			gird-column: 2/3;
+			grid-row: 1/2,
+			grid-column: 2/3;
 		}
 		figure {
 			grid-row: 2/3;
-			gird-column: 2/4;
+			grid-column: 2/4;
 		}
 		article {
 			grid-row: 1/2;
