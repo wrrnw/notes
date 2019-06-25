@@ -97,7 +97,7 @@
 ### HTML - Structure
 - `<b><\b>` **bold** in HTML4; visual emphasis in HTML5
 - `<i><\i>` *italic* in HTML4; Alternative voice in HTML5
-- `<u><\u>` underline in HTML4; non-textual annotation IN HTML5
+- `<u><\u>` underline in HTML4; non-textual annotation in HTML5
 - `<s><\s>` ~~strikethrough~~ in HTML4; Incorrect in HTML5
 - `<em>` Emphasis or stress
 - `<strong>` Importance
@@ -248,11 +248,11 @@
 	``` js
 	const express = require('express');
 	const router = express.Router();
-	const controller = require('../controllers/controllers');
+	const controller = require('../controller/controller.js');
 
 	router.get('/', controller.fetchMainPage);
-	router.get('/posts', controllers.fetchAllPosts);
-	router.get('/posts/:id', controllers.fetchPost);
+	router.get('/posts', controller.fetchAllPosts);
+	router.get('/posts/:id', controller.fetchPost);
 	module.exports = router;
 	```
 - Global vs. Local Installation
