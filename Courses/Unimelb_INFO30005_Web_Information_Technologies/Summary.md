@@ -587,7 +587,7 @@
 			grid-template-rows: 4em auto;
 		}
 		header {
-			grid-row: 1/2,
+			grid-row: 1/2;
 			grid-column: 2/3;
 		}
 		figure {
@@ -762,7 +762,7 @@
 	- Mocha - Unit Testing Example
 		``` js
 		var assert = require('assert');
-		descrikbe('Mocha Test Example 1', function () {
+		describe('Mocha Test Example 1', function () {
 			it('checking the sum of two numbers - PASS', function () {
 				var sum = 1 + 2;
 				assert.strictEqual(sum, 3);
@@ -897,7 +897,7 @@
 - Inside which HTML element do we put the JavaScript
 	- <Script\>
 - How to change the HTML element below using JavaScript?  `<p id="demo">This is just a demo for you</p> `
-	- `Document.getElementById("demo").innerHTML = "Hello"`
+	- `document.getElementById("demo").innerHTML = "Hello"`
 #### **Short Answers Questions**
 - List three git commands to a. Clone a repository b. Add a file to staging area c. Commit a file
 	- a. git clone http://www.github.com/libgit2/libgit2.git
@@ -986,7 +986,7 @@
 	- `<h1>` Stick to one per page
 - IMG Optimisation
 	- `<img src="img01.jpg alt="">`
-	-  Change to `<img src="kofster_logo,jpg alt="Kofster Logo">` to combine with surrounding text
+	-  Change to `<img src="kofster_logo.jpg alt="Kofster Logo">` to combine with surrounding text
 - SEO Tools
 - Microformats
 	- Special syntax to identify types of content
@@ -1021,7 +1021,7 @@
 	- Follow local tax regulations
 	- Localise your pricing structure
 - Language Case Example
-	- A directory /locales contains: en_AU.json; en_US.json; fr_FR.json
+	- A directory/locales contains: en_AU.json; en_US.json; fr_FR.json
 	- EN_AU.JSON:
 		``` json
 		{
