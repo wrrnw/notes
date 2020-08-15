@@ -1,4 +1,4 @@
-# Reading Notes for Book \<Professional JavaScript for Web Developers\>
+# Notes for Book \<Professional JavaScript for Web Developers\>
 
 ## Chapter 1 What is JavaScript
 
