@@ -8,5 +8,6 @@
 
   ## Web Development
   - [Course: Unimelb INFO30005 Web Information Technologies (2019 Semester 1)](Courses/Unimelb_INFO30005_Web_Information_Technologies/Summary.md)
+  - [Book: Eloquent JavaScript](Books/Eloquent_Javascript.md)
   - [Book: Professional JavaScript for Web Developers](Books/Professional_Javascript_for_Web_Developers.md)
   - [Book: CSS: The Definitive Guide](Books/CSS_The_Definitive_Guide.md)

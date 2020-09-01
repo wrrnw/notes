@@ -1,4 +1,4 @@
-# Notes for <Eloquent JavaScript (3rd Edition)>
+# Notes for the book <Eloquent JavaScript (3rd Edition)>
 
 - Author: Marijn Haverbeke
 - Vertion: 3rd Edition 2018
@@ -142,7 +142,6 @@
 ### 4.17 Summary
 
 - Most values in JavaScript have properties, the exceptions being `null` and `undefined`. Properties are accessed using `value.prop` or `value["prop"]`.
-- 
 
 ### 4.18 Exercises
 
@@ -153,6 +152,10 @@
 ### 5.2 Abstrating repetition
 
 ### 5.3 Higher-order functions
+
+- Functions that operate on other functions, either by taking them as arguments or by returning them, are called *higher-order functions.* In simple words, A Higher-Order funciton is a function that receives a function as an argument or returns the function as output **
+- Higher-order functions allow us to abstract over actions, not just values
+- A JavaScript Callback Function is a function that is passed as a parameter to another JavaScript function, and the callback function is run inside of the function it was passed into. JavaScript Callback Functions can be used synchronously or asynchronously.
 
 ### 5.4 Script data set
 
@@ -170,27 +173,70 @@
 
 ### 5.11 Summary
 
+- Arrays provide a number of useful higher-order methods
+    - use `forEach` to loop over the elements in an array
+    - use `filter` method returns a new array containing only the elements that pass the predicate function
+    - transforming an array by putting each element through a function is done with `map`
+    - use `reduce`to combine all the elements in an array into a single value
+    - use `some` method tests whether any element matches a given predicate function
+    - use `findIndex` finds the position of the first element that matches a predicate
+
 ### 5.12 Exercises
 
 ## Ch. 6 The Secret Life of Objects
 
 ### 6.1 Encapsulation
 
+- The core idea in object-oriented programming is to divide programs into smaller pieces and make each piece responsible for managing its own state. Different pieces of such a program interact with each other through *interfaces*, limited sets of fcuntions or bindings that provide useful functionality at a more abstract level, hiding their precise implementation. Such program pieces are modeled using objects. Their interface consistes of a specific set of methods and properties. Properties that are part of the interface are called *public*. The others, which outside code should not be touching, are called *private*.
+- It is common to put an underscore (_) character at the start of property names to indicate that those properties are private
+- Separating interface from implementation is a great idea. It is usually called *encapsulation*
+
 ### 6.2 Methods
+
+- Methods are nothing more than properties that hold function values
+- Usually a method needs to do something with the object it was called on. When a function is called as a method — looked up as a property and immediately called, as in `object.method()` — the binding called `this` in its body automatically points at the object that it was called on
+- You can think of this as an extra parameter that is passed in a different way. If you want to pass it explicitly, you can use a function's `call` method, which takes the `this` value as its first argument and treats further arguments as normal parameters
+- Since each function has its own `this` binding, whose value depends on the way it is called, you cannot refer to the `this` of the wrapping scope in a regular function defined with the `function` keyword
+- Arrow functions are different — they do not bind their own `this` but can see the `this` binding of the scope around them
 
 ### 6.3 Prototypes
 
+- In addition to their set of properties, most objects also have a *prototype*. A prototype is another object that is used as a fallback source of properties. When an object gets a request for a property that it does not have, its prototype will be searched for the property, then the prototype's prototype, and so on
+
 ### 6.4 Classes
 
+- Constructors (all functions, in fact) automatically get a property named `prototype`, which by default holds a plain, empty object that derives from `Object.prototype`
+- By convention, the names of constructors are capitalized so that they can easily be distinguished from other functions
+- It is important to understand the distinction between the way a prototype is associated with a constructor (through its `prototype` property) and the way objects have a prototype (which can be found with `Object.getPrototypeOf`). The actual prototype of a constructor is `Function.prototype` since constructors are functions. Its prototype *property* holds the prototype used for instances created through it.
+
 ### 6.5 Class notation
+
+- The `class` keyword starts a class declaration, which allows us to define a constructor and a set of methods all in a single place. Any number of methods may be written inside the declaration's braces. The one named `constructor` is treated specially. It provides the actual constructor function, which will be bound to the name Rabbit. The others are packaged into that constructor's prototype.
 
 ### 6.6 Overriding derived properties
 
 ### 6.7 Maps
 
+- A *map* (noun) is a data structure that associates values (the keys) with other values
+- `Object.keys` returns only an object's *own* keys, not those in the prototype. As an alternative to the `in` operator, you can use the `hasOwnProperty` method, which ignores the object's prototype.
+
 ### 6.8 Polymorphism
 
+- When a piece of code is written to work with objects that have a certain interface — in this case, a `toString` method — any kind of object that happens to support this interface can be pugged into the code, and it will just work. This technique is called *polymorphism*
+
 ### 6.9 Symbols
+
+- Symbols are values created with the `Symbol` function. Unlike strings, newly created symbols are unique — you cannot create the same symbol twice
+- Being both unique and usable as property names makes symbols suitable for defining interfaces that can peacefully live alongside other properties, no matter what their names are
+
+    ```jsx
+    const toStringSymbol = Symbol("toString");
+    Array.prototype[toStringSymbol] = function() {
+    	return `${this.length} cm of blue yarn`;
+    };
+    console.log([1, 2].toString());
+    console.log([1, 2][toStringSymbol]());
+    ```
 
 ### 6.10 The iterator interface
 
