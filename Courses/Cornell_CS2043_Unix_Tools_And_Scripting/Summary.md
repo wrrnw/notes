@@ -1,4 +1,4 @@
-# Cornell CS2043 Unix Tools and Scripting
+# Cornell CS2043 Unix Tools and Scripting Summary
 
 ## Some Points
 - Version: 2019 Spring
