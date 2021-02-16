@@ -1,4 +1,4 @@
-# [Udemy Ultimate AWS Certified Solutions Architect Associate 2021](https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c02/) Summary
+# [<Udemy Ultimate AWS Certified Solutions Architect Associate 2021>]([https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c02/](https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c02/)) Summary
 
 ## Section 1: Introduction - AWS Certified Solutions Architect Associate
 
@@ -104,8 +104,6 @@
 
 - Introduction
 
-    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/55eca460-5822-41d6-89e2-542763de2db7/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/55eca460-5822-41d6-89e2-542763de2db7/Untitled.png)
-
 ### 24. Security Groups Deep Dive
 
 - Deeper Dive
@@ -127,8 +125,6 @@
     - All outbound traffic is authorised by default
 - Referencing other security groups Diagram
 
-    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be25fa38-aad9-4d2b-a1a7-9b3fafa49032/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be25fa38-aad9-4d2b-a1a7-9b3fafa49032/Untitled.png)
-
 ### 25. Private vs Public vs Elastic IP
 
 - Private vs Public IP (IPv4)
@@ -141,9 +137,6 @@
     - IPv4 allows for 3.7 billion different addresses in the public space
     - IPv4: [0-255].[0-255].[0-255].[0-255]
 - Private vs Public IP (IPv4) Examples
-
-    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5bcd783f-b80d-4377-b017-82946ee66959/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5bcd783f-b80d-4377-b017-82946ee66959/Untitled.png)
-
 - Fundamental Differences
     - Public IP:
         - Public IP means the machine can be identified on the internet (WWW)
@@ -182,11 +175,104 @@
 
 ### 28. EC2 User Data
 
+- EC2 User Data
+    - It is possible to bootstrap our instances using an **EC2 User data** script
+    - **bootstrapping** means launching commands when a machine starts
+    - That script is **only run once** at the instance **first start**
+    - EC2 user data is used to automate boot tasks such as:
+        - Installing updates
+        - Installing software
+        - Downloading common files from the internet
+        - Anything you can think of
+    - The EC2 User Data Script runs with the root user
+- EC2 User Data Hands On
+    - We want to make sure that this EC2 instance has an Apache HTTP server installed on it - to display a simple web page
+    - For it, we are going to write a user-data script
+    - This script will be executed at the first boot of the instance
+
 ### Quiz 1: IAM & EC2 Mid Way Quiz
 
 ### 29. EC2 Instances Launch Types
 
+- Types
+    - On Demand Instances: short workload, predictable pricing
+    - Reserved: (MINIMUM 1 year)
+        - Reserved Instances: long workloads
+        - Convertible Reserved Instances: long workloads with flexible instances
+        - Scheduled Reserved Instances: example - every Thursday between 3 and 6 pm
+    - Spot Instances: short workloads, for cheap, can lose instances (less reliable)
+    - Dedicated Instances: no other customers will share your hardware
+    - Dedicated Hosts: book an entire physical server, control instance placement
+- EC2 On Demand
+    - Pay for what you use (billing per second, after the first minute)
+    - Has the highest cost but no upfront payment
+    - No long term commitment
+    - Recommended for short-term and un-interrupted workloads, where you can't predict how the application will behave
+- EC2 Reserved Instances
+    - Up to 75% discount compared to On-demand
+    - Pay upfront for what you use with long term commitment
+    - Reservation period can be 1 or 3 years
+    - Reserve a specific instance type
+    - Recommended for steady state usage applications (think database)
+    - Convertible Reserved Instance
+        - can change the EC2 instance type
+        - Up to 54% discount
+    - Scheduled Reserved Instances
+        - launch within time window you reserve
+        - When you require a fraction of day / week / month
+- EC2 Spot Instances
+    - Can get a discount of up to 90% compared to On-demand
+    - Instances that you can "lose" at any point of time if your max price is less than the current spot price
+    - The MOST cost-efficient instances in AWS
+    - Useful for workloads that are resilient to failure
+        - Batch jobs
+        - Data analysis
+        - Image processing
+        - ...
+    - Not great for critical jobs or databases
+    - Great combo: Reserved Instances for baseline + On-Demand & Spot for peaks
+- EC2 Dedicated Hosts
+    - Physical dedicated EC2 server for your use
+    - Full control of EC2 instance placement
+    - Visibility into the underlying sockets / physical cores or the hardware
+    - Allocated for your account for a 3 year period reservation
+    - More expensive
+    - Useful for software that have complicated licensing model (BYOL - Bring Your Own License)
+    - Or for companies that have strong regulatory or compliance needs
+- EC2 Dedicated Instances
+    - Instances running on hardware that's dedicated to you
+    - May share hardware with other instances in the same account
+    - No control over instance placement (can move hardware after Stop / Start)
+
+    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7c978055-7c04-4b78-839c-e90ee9a66b61/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7c978055-7c04-4b78-839c-e90ee9a66b61/Untitled.png)
+
 ### 30. Spot Instances & Spot Fleet
+
+- EC2 Spot Instance Requests
+    - Can get a discount of up to 90% compared to Ondemand
+    - Define max spot price and get the instance while current spot price < max
+        - The hourly spot price varies based on offer and capacity
+        - If the current spot price > your max price you can choose to stop or terminate your instance with a 2 minute grace period
+    - Other stratrgy: Spot Block
+        - "Block" spot instance during a specified time frame (1 to 6 hours) without interruptions
+        - In rare situations, the instance may be reclaimed
+    - Used for batch jobs, data analysis, or workloads that are resilient to failures
+    - Not great for critical jobs or databases
+- How to terminate Spot Instances?
+
+    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6d11375f-b3ed-4d7f-a664-9634333857d8/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6d11375f-b3ed-4d7f-a664-9634333857d8/Untitled.png)
+
+- Spot Fleets
+    - Spot Fleets = set of Spot Instances + (optinal) On-Demand Instances
+    - The Spot Fleet will try to meet the target capacity with price constraints
+        - Define possible launch pools: instance type (m5.large), OS, Availability Zone
+        - Can have multiple launch pools, so that the fleet can choose
+        - Spot Fleet stops launching instances when reaching capacity or max cost
+    - Strategies to allocate Spot Instance
+        - lowestPrice: from the pool with the lowest price (cost optimization, short workload)
+        - diversified: distributed across all pool (great for availability, long workloads)
+        - capacityOptimized: pool with the optimal capacity for the number of instances
+    - Spot Fleets allow us to automatically request Spot Instances with the lowest price
 
 ### 31. EC2 Instance Launch Types Hands On
 
